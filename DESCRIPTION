@@ -6,6 +6,8 @@ Maintainer: Francesco Pantalone <pantalone.fra@gmail.com>
 Description: Provides functions to draw spatially balanced samples. It contains fast implementations (C++ via 'Rcpp') of the included sampling methods. In particular, the algorithms to draw spatially balanced samples are pwd() and swd(). These methods use a probability distribution, proportional to the within sample distance. See Benedetti R and Piersimoni F (2017) <doi:10.1002/bimj.201600194> for details. Moreover, there is a function hpwd(), which is a heuristic method to achieve approximated samples obtained by pwd() in a faster way. See Benedetti R and Piersimoni F (2017) <arXiv:1710.09116> for details. Finally, there are two functions, stprod() and stsum(), useful to standardize distance matrices in order to achieve fixed sample size using, respectively, the functions pwd() and swd().
 Depends: R (>= 3.1)
 License: GPL-3
+URL: https://github.com/FrancescoPantalone/Spbsampling
+BugReports: https://github.com/FrancescoPantalone/Spbsampling/issues
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp, RcppArmadillo
