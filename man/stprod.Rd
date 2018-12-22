@@ -32,8 +32,8 @@ stand_dist <- stprod(dis, vec, 1e-15, 1000)
 }
 \donttest{
 dis <- as.matrix(dist(cbind(simul1$x, simul1$y))) # distance matrix
-vec <- rep(0, nrow(dis)) # vector of constraints
-stand_dist <- stprod(dis, vec, 1e-15, 1000) # standardized matrix
+con <- rep(0, nrow(dis)) # vector of constraints
+stand_dist <- stprod(dis, con) # standardized matrix
 }
 }
 \references{

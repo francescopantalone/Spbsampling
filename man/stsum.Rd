@@ -25,8 +25,8 @@ When the known totals are all equal to a constant (e.g. 1), this method provides
 }
 \examples{
 dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
-vec <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(dis, vec, 1e-15, 1000) # standardized matrix
+con <- rep(1, nrow(dis)) # vector of constraints
+stand_dist <- stsum(dis, con) # standardized matrix
 }
 \references{
 \insertRef{BIMJ:BIMJ1785}{Spbsampling}

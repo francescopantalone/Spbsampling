@@ -33,6 +33,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sbi
+double sbi(arma::mat dis, arma::vec pi, arma::uvec s);
+RcppExport SEXP _Spbsampling_sbi(SEXP disSEXP, SEXP piSEXP, SEXP sSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type pi(piSEXP);
+    Rcpp::traits::input_parameter< arma::uvec >::type s(sSEXP);
+    rcpp_result_gen = Rcpp::wrap(sbi(dis, pi, s));
+    return rcpp_result_gen;
+END_RCPP
+}
 // stprod
 arma::mat stprod(arma::mat mat, arma::vec vec, double differ, int niter);
 RcppExport SEXP _Spbsampling_stprod(SEXP matSEXP, SEXP vecSEXP, SEXP differSEXP, SEXP niterSEXP) {
@@ -80,6 +93,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_Spbsampling_hpwd", (DL_FUNC) &_Spbsampling_hpwd, 3},
     {"_Spbsampling_pwd", (DL_FUNC) &_Spbsampling_pwd, 4},
+    {"_Spbsampling_sbi", (DL_FUNC) &_Spbsampling_sbi, 3},
     {"_Spbsampling_stprod", (DL_FUNC) &_Spbsampling_stprod, 4},
     {"_Spbsampling_stsum", (DL_FUNC) &_Spbsampling_stsum, 4},
     {"_Spbsampling_swd", (DL_FUNC) &_Spbsampling_swd, 5},
