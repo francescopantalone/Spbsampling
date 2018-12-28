@@ -23,6 +23,10 @@ A sample is *spatially balanced* when is spread on the auxiliary space. The **Sp
 
 For details regarding the implemented sampling designs, look at the references section.
 
+Authors: Francesco Pantalone, Roberto Benedetti, Federica Piersimoni.
+
+Maintainer: Francesco Pantalone.
+
 ## Installation
 
 You can install the released version of Spbsampling from [CRAN](https://CRAN.R-project.org)
@@ -48,5 +52,8 @@ Benedetti R, Piersimoni F (2017). “A spatially balanced design with probabilit
 
 Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced Samples.” *arXiv*. https://arxiv.org/abs/1710.09116
 
+## License
+
+GPL-3
 
 

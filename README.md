@@ -20,6 +20,10 @@ balance index.
 For details regarding the implemented sampling designs, look at the
 references section.
 
+Authors: Francesco Pantalone, Roberto Benedetti, Federica Piersimoni.
+
+Maintainer: Francesco Pantalone.
+
 ## Installation
 
 You can install the released version of Spbsampling from
@@ -49,3 +53,7 @@ probability function proportional to the within sample distance.”
 
 Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced
 Samples.” *arXiv*. <https://arxiv.org/abs/1710.09116>
+
+## License
+
+GPL-3
