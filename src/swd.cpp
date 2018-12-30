@@ -1,5 +1,5 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 
 //' Sum Within Distance (Spatially Balanced Sampling).
 //'
@@ -39,20 +39,31 @@ using namespace Rcpp;
 //' @export
 // [[Rcpp::export]]
 
-NumericMatrix swd (NumericMatrix dis, int nsamp, int bexp, int nrepl = 1, int niter = 10)
+arma::mat swd (arma::mat dis, int nsamp, int bexp, int nrepl = 1, int niter = 10)
 {
-  NumericMatrix selez(nsamp * nrepl, 2);
-  int npo=dis.nrow();
-  NumericVector rcopy(npo);
-  NumericVector ord(npo);
-  NumericVector sor(npo);
-  NumericVector codord(npo);
-  NumericVector gcod(npo * 3);
-  NumericVector rand(npo);
+  arma::mat selez(nsamp * nrepl, 2);
+  int npo = dis.n_rows;
+  arma::vec ord(npo);
+  arma::vec codord(npo);
+  arma::vec gcod(npo * 3);
+  arma::vec rand(npo);
+  arma::uvec urand(npo);
   double ch, totc, totb;
+  if(dis.is_square() == FALSE)
+  {
+    throw Rcpp::exception("The distance matrix has to be N x N.");
+  }
+  if(dis.is_symmetric() == FALSE)
+  {
+    Rcpp::warning("The distance matrix is not symmetric.");
+  }
   if(nsamp > npo)
   {
     throw Rcpp::exception("Sample size greater than population size.");
+  }
+  if(nrepl < 0)
+  {
+    throw Rcpp::exception("bexp has to be different from 0.");
   }
   if(nrepl < 0)
   {
@@ -66,37 +77,17 @@ NumericMatrix swd (NumericMatrix dis, int nsamp, int bexp, int nrepl = 1, int ni
   totc = 0.0;
   totb = 0.0;
   int w, k, z, iter;
-  NumericVector cod(npo);
-  for(int i = 0; i < npo; i++)
-  {
-    cod(i) = i + 1;
-  }
+  arma::vec cod = arma::linspace(1, npo, npo);
   for(int cc = 1;cc <= nrepl; cc++)
   {
     iter = 0;
-    rand = runif(npo);
-    rcopy = clone(rand);
-    sor = rcopy.sort();
-    for(int i = 0; i < npo; i++)
-    {
-      for(int j = 0; j < npo; j++)
-      {
-        if(sor(i) == rand(j))
-        {
-          ord(i) = j + 1;
-          rand(j)=-1;
-          j = npo;
-        }
-      }
-    }
-    for(int i = 0; i < npo; i++)
-    {
-      codord(i) = cod(ord(i) - 1);
-    }
+    rand = Rcpp::runif(npo);
+    urand = arma::sort_index(rand);
+    codord = cod(urand);
     while(iter < niter)
     {
       z = 1;
-      gcod = runif(npo * 3);
+      gcod = Rcpp::runif(npo * 3);
       while(z <= npo)
       {
         w = trunc(gcod(z - 1) * nsamp) + 1;

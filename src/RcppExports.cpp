@@ -20,12 +20,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // pwd
-NumericMatrix pwd(NumericMatrix dis, int nsamp, int nrepl, int niter);
+arma::mat pwd(arma::mat dis, int nsamp, int nrepl, int niter);
 RcppExport SEXP _Spbsampling_pwd(SEXP disSEXP, SEXP nsampSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type dis(disSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
     Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
     Rcpp::traits::input_parameter< int >::type nrepl(nreplSEXP);
     Rcpp::traits::input_parameter< int >::type niter(niterSEXP);
@@ -75,12 +75,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // swd
-NumericMatrix swd(NumericMatrix dis, int nsamp, int bexp, int nrepl, int niter);
+arma::mat swd(arma::mat dis, int nsamp, int bexp, int nrepl, int niter);
 RcppExport SEXP _Spbsampling_swd(SEXP disSEXP, SEXP nsampSEXP, SEXP bexpSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type dis(disSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
     Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
     Rcpp::traits::input_parameter< int >::type bexp(bexpSEXP);
     Rcpp::traits::input_parameter< int >::type nrepl(nreplSEXP);

@@ -1,5 +1,5 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 
 //' Product Within Distance (Spatially Balanced Sampling).
 //'
@@ -50,18 +50,25 @@ using namespace Rcpp;
 //' @export
 // [[Rcpp::export]]
 
-NumericMatrix pwd (NumericMatrix dis, int nsamp, int nrepl = 1, int niter = 10)
+arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
 {
-  NumericMatrix selez(nsamp * nrepl, 2);
-  int npo=dis.nrow();
-  NumericMatrix discopy(npo, npo);
-  NumericVector rcopy(npo);
-  NumericVector ord(npo);
-  NumericVector sor(npo);
-  NumericVector codord(npo);
-  NumericVector gcod(npo * 3);
-  NumericVector rand(npo);
+  arma::mat selez(nsamp * nrepl, 2);
+  int npo = dis.n_rows;
+  arma::vec ord(npo);
+  arma::vec sor(npo);
+  arma::vec codord(npo);
+  arma::vec gcod(npo * 3);
+  arma::vec rand(npo);
+  arma::uvec urand(npo);
   double ch,totc,totb;
+  if(dis.is_square() == FALSE)
+  {
+    throw Rcpp::exception("The distance matrix has to be N x N.");
+  }
+  if(dis.is_symmetric() == FALSE)
+  {
+    Rcpp::warning("The distance matrix is not symmetric.");
+  }
   if(nsamp > npo)
   {
     throw Rcpp::exception("Sample size greater than population size.");
@@ -78,52 +85,19 @@ NumericMatrix pwd (NumericMatrix dis, int nsamp, int nrepl = 1, int niter = 10)
   totc = 0.0;
   totb = 0.0;
   int w, k, z, iter;
-  discopy = clone(dis);
-  for(int i = 0; i < npo; i++)
-  {
-    for(int j = 0; j < npo; j++)
-    {
-      if(i == j)
-      {
-        discopy(i, j) = 0;
-      }
-      else
-      {
-        discopy(i, j) = log(dis(i, j));
-      }
-    }
-  }
-  NumericVector cod(npo);
-  for(int i = 0; i < npo; i++)
-  {
-    cod(i) = i + 1;
-  }
+  dis.diag().fill(1);
+  dis = log(dis);
+  arma::vec cod = arma::linspace(1, npo, npo);
   for(int cc = 1; cc <= nrepl; cc++)
   {
     iter = 0;
-    rand = runif(npo);
-    rcopy = clone(rand);
-    sor = rcopy.sort();
-    for(int i = 0; i < npo; i++)
-    {
-      for(int j = 0; j < npo; j++)
-      {
-        if(sor(i) == rand(j))
-        {
-          ord(i) = j + 1;
-          rand(j)=-1;
-          j = npo;
-        }
-      }
-    }
-    for(int i = 0; i < npo; i++)
-    {
-      codord(i) = cod(ord(i) - 1);
-    }
+    rand = Rcpp::runif(npo);
+    urand = arma::sort_index(rand);
+    codord = cod(urand);
     while(iter < niter)
     {
       z = 1;
-      gcod = runif(npo * 3);
+      gcod = Rcpp::runif(npo * 3);
       while(z <= npo)
       {
         w = trunc(gcod(z - 1) * nsamp) + 1;
@@ -131,14 +105,14 @@ NumericMatrix pwd (NumericMatrix dis, int nsamp, int nrepl = 1, int niter = 10)
         totc = 0;
         for (int i = 0; i < nsamp; i++)
         {
-          totc = totc + discopy(codord(w - 1) - 1, codord(i) - 1);
+          totc = totc + dis(codord(w - 1) - 1, codord(i) - 1);
         }
         totb = 0;
         for (int i = 0; i < nsamp; i++)
         {
-          totb = totb + discopy(codord(k - 1) - 1, codord(i) - 1);
+          totb = totb + dis(codord(k - 1) - 1, codord(i) - 1);
         }
-        totb = totb - discopy(codord(k - 1) - 1, codord(w - 1) - 1);
+        totb = totb - dis(codord(k - 1) - 1, codord(w - 1) - 1);
         if (log(gcod(2 * npo + z - 1)) < (totb - totc))
         {
           ch = codord(w - 1);
