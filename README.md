@@ -33,15 +33,17 @@ You can install the released version of Spbsampling from
 install.packages("Spbsampling")
 ```
 
-or the development version from GitHub
+or the development version from GitHub, using the **devtools** package
 
 ``` r
-# using devtools
-# install.packages("devtools")
-devtools::install_github("FrancescoPantalone/Spbsampling")
-# or using remotes
-# install.packages("remotes")
-remotes::install_github("FrancescoPantalone/Spbsampling")
+devtools::install_github("francescopantalone/Spbsampling")
+```
+
+or using the **remotes** package, which is a lighter package than
+**devtools**
+
+``` r
+remotes::install_github("francescopantalone/Spbsampling")
 ```
 
 ## References
