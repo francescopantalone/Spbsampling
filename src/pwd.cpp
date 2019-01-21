@@ -52,15 +52,7 @@
 
 arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
 {
-  arma::mat selez(nsamp * nrepl, 2);
   int npo = dis.n_rows;
-  arma::vec ord(npo);
-  arma::vec sor(npo);
-  arma::vec codord(npo);
-  arma::vec gcod(npo * 3);
-  arma::vec rand(npo);
-  arma::uvec urand(npo);
-  double ch,totc,totb;
   if(dis.is_square() == FALSE)
   {
     throw Rcpp::exception("The distance matrix has to be N x N.");
@@ -73,14 +65,26 @@ arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
   {
     throw Rcpp::exception("Sample size greater than population size.");
   }
-  if(nrepl < 0)
+  if(nsamp <= 0)
+  {
+    throw Rcpp::exception("Sample size negative or 0.");
+  }
+  if(nrepl <= 0)
   {
     throw Rcpp::exception("nrepl has to be greater than 0.");
   }
-  if(niter < 0)
+  if(niter <= 0)
   {
     throw Rcpp::exception("niter has to be greater than 0");
   }
+  arma::mat selez(nsamp * nrepl, 2);
+  arma::vec ord(npo);
+  arma::vec sor(npo);
+  arma::vec codord(npo);
+  arma::vec gcod(npo * 3);
+  arma::vec rand(npo);
+  arma::uvec urand(npo);
+  double ch,totc,totb;
   ch = 0.0;
   totc = 0.0;
   totb = 0.0;

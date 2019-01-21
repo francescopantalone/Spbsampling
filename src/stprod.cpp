@@ -31,17 +31,25 @@
 
 arma::mat stprod(arma::mat mat, arma::vec vec, double differ = 1e-15, int niter = 1000)
 {
-  if(niter <= 0)
+  if(mat.is_square() == FALSE)
   {
-    throw Rcpp::exception("niter has to be greater than 0.");
+    throw Rcpp::exception("The distance matrix has to be N x N.");
+  }
+  if(mat.is_symmetric() == FALSE)
+  {
+    Rcpp::warning("The distance matrix is not symmetric.");
+  }
+  if(vec.n_elem != mat.n_rows)
+  {
+    throw Rcpp::exception("The dimension of vec has to be equal to the number of row/column of the distance matrix.");
   }
   if(differ < 0)
   {
     throw Rcpp::exception("differ has to be greater or equal than 0.");
   }
-  if(vec.n_elem != mat.n_rows)
+  if(niter <= 0)
   {
-    throw Rcpp::exception("The dimension of vec has to be equal to the number of row/column of the distance matrix.");
+    throw Rcpp::exception("niter has to be greater than 0.");
   }
   int nsize = mat.n_rows;
   arma::vec rowsums;

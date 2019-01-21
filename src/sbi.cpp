@@ -38,6 +38,18 @@
 
 double sbi(arma::mat dis, arma::vec pi, arma::uvec s)
 {
+  if(dis.is_square() == FALSE)
+  {
+    throw Rcpp::exception("The distance matrix has to be N x N.");
+  }
+  if(dis.is_symmetric() == FALSE)
+  {
+    Rcpp::warning("The distance matrix is not symmetric.");
+  }
+  if(pi.n_elem != dis.n_rows)
+  {
+    Rcpp::warning("The vector pi has length different from population size.");
+  }
   arma::uvec near;
   arma::uvec ii;
   int N = pi.n_elem;

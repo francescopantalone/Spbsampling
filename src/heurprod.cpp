@@ -46,20 +46,32 @@
 
 arma::mat hpwd(arma::mat dis, int nsamp, int nrepl=1)
 {
-  arma::mat selez(nsamp * nrepl, 2);
   int npop = dis.n_rows;
-  arma::vec r(1);
-  arma::vec c(npop);
-  arma::vec psel(npop);
-  double drawn;
+  if(dis.is_square() == FALSE)
+  {
+    throw Rcpp::exception("The distance matrix has to be N x N.");
+  }
+  if(dis.is_symmetric() == FALSE)
+  {
+    Rcpp::warning("The distance matrix is not symmetric.");
+  }
   if(nsamp > npop)
   {
     throw Rcpp::exception("Sample size greater than population size.");
   }
-  if(nrepl < 0)
+  if(nsamp <= 0)
+  {
+    throw Rcpp::exception("Sample size negative or 0.");
+  }
+  if(nrepl <= 0)
   {
     throw Rcpp::exception("nrepl has to be greater than 0.");
   }
+  arma::mat selez(nsamp * nrepl, 2);
+  arma::vec r(1);
+  arma::vec c(npop);
+  arma::vec psel(npop);
+  double drawn;
   for(int cc = 1; cc <= nrepl; cc++)
   {
     psel.fill(1.0 / npop);
