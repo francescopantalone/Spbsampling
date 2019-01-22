@@ -1,4 +1,4 @@
-# Spbsampling 1.2.0 - Not (yet) on CRAN
+# Spbsampling 1.1.0
 
 ## New features
 

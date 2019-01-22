@@ -10,15 +10,17 @@ version](http://www.r-pkg.org/badges/version/Spbsampling)](https://cran.r-projec
 An [R](https://www.r-project.org) package for *spatially balanced
 sampling*.
 
-A sample is *spatially balanced* when is spread on the auxiliary space.
-The **Spbsampling** package provides functions to draw this kind of
-samples. It contains fast implementations (C++ via **Rcpp** and
-**RcppArmadillo**) of the included sampling methods, and related
-functions to deal with distance matrix standardization and spatial
-balance index.
+The **Spbsampling** package provides functions to draw *spatially
+balanced samples*. In particular, the implemented sampling designs allow
+to select probability samples spread over the population of interest, in
+any dimension and using any distance function (e.g. Euclidean distance,
+Manhattan distance).
 
 For details regarding the implemented sampling designs, look at the
 references section.
+
+The implementation has been done in C++ through the use of **Rcpp** and
+**RcppArmadillo**.
 
 Authors: Francesco Pantalone, Roberto Benedetti, Federica Piersimoni.
 
