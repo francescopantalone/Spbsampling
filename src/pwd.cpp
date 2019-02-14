@@ -21,12 +21,9 @@
 //' @param nrepl Number of samples to draw (default = 1).
 //' @param niter Number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
-//' @return Return a matrix 2 x \code{nrepl}, which contains the \code{nrepl}
-//' sample selected. In particular, the first column indicates the
-//' i-th sample selected while the second column contains the label of the unit
-//' selected in that specific sample. For example, if for a given row, we
-//' have 4 in the first column and 2 in the second column, it means that in
-//' the sample number 4 the unit 2 has been selected.
+//' @return Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' \code{nrepl} selected samples, each of them stored in a row. In particular,
+//' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
 //' Benedetti R, Piersimoni F (2017). “A spatially balanced design with
 //' probability function proportional to the within sample distance.”
@@ -93,7 +90,7 @@ arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
   {
     throw Rcpp::exception("niter has to be greater than 0");
   }
-  arma::mat selez(nsamp * nrepl, 2);
+  arma::mat selez(nrepl, nsamp);
   arma::vec ord(npo);
   arma::vec sor(npo);
   arma::vec codord(npo);
@@ -143,16 +140,7 @@ arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
       }
       iter++;
     }
-    for (int i = ((cc - 1) * nsamp); i < (cc * nsamp); i++)
-    {
-      selez(i, 0) = cc;
-    }
-    int j = 0;
-    for (int i = ((cc - 1) * nsamp); i < (cc * nsamp); i++)
-    {
-      selez(i, 1) = codord(j);
-      j++;
-    }
+    selez.row(cc - 1) = codord.subvec(0, nsamp - 1).t();
   }
   return selez;
 }

@@ -23,12 +23,9 @@
 //' of units in the population.
 //' @param nsamp Sample size.
 //' @param nrepl Number of samples to draw (default = 1).
-//' @return Return a matrix 2 x \code{nrepl}, which contains the \code{nrepl}
-//' sample selected. In particular, the first column indicates the
-//' i-th sample selected while the second column contains the label of the unit
-//' selected in that specific sample. For example, if for a given row, we
-//' have 4 in the first column and 2 in the second column, it means that in
-//' the sample number 4 the unit 2 has been selected.
+//' @return Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' \code{nrepl} selected samples, each of them stored in a row. In particular,
+//' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
 //' Benedetti R, Piersimoni F (2017). “A spatially balanced design with
 //' probability function proportional to the within sample distance.”
@@ -84,7 +81,7 @@ arma::mat hpwd(arma::mat dis, int nsamp, int nrepl=1)
   {
     throw Rcpp::exception("nrepl has to be greater than 0.");
   }
-  arma::mat selez(nsamp * nrepl, 2);
+  arma::mat selez(nrepl, nsamp);
   arma::vec r(1);
   arma::vec c(npop);
   arma::vec psel(npop);
@@ -94,7 +91,6 @@ arma::mat hpwd(arma::mat dis, int nsamp, int nrepl=1)
     psel.fill(1.0 / npop);
     for(int j = 1; j <= nsamp; j++)
     {
-      selez((cc - 1) * nsamp + j - 1, 0) = cc;
       r = Rcpp::runif(1);
       c.fill(0);
       drawn = 0;
@@ -115,10 +111,10 @@ arma::mat hpwd(arma::mat dis, int nsamp, int nrepl=1)
           }
         }
       }
-      selez((cc - 1) * nsamp + j - 1, 1) = drawn + 1;
+      selez(cc -1, j - 1) = drawn + 1;
       for(int i = 0; i < npop; i++)
       {
-        psel(i) = psel(i) * dis(selez((cc - 1) * nsamp + j - 1, 1) - 1, i);
+        psel(i) = psel(i) * dis(drawn, i);
       }
       psel = psel / sum(psel);
     }

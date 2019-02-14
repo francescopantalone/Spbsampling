@@ -15,12 +15,9 @@ of units in the population.}
 \item{nrepl}{Number of samples to draw (default = 1).}
 }
 \value{
-Return a matrix 2 x \code{nrepl}, which contains the \code{nrepl}
-sample selected. In particular, the first column indicates the
-i-th sample selected while the second column contains the label of the unit
-selected in that specific sample. For example, if for a given row, we
-have 4 in the first column and 2 in the second column, it means that in
-the sample number 4 the unit 2 has been selected.
+Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+\code{nrepl} selected samples, each of them stored in a row. In particular,
+the i-th row contains all labels of units selected in the i-th sample.
 }
 \description{
 The function \code{hpwd} provides a fast selection of spatially balanced
