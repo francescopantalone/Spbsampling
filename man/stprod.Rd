@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{stprod}
 \alias{stprod}
-\title{Standardize a symmetric matrix (distances) to fixed row (column) products.}
+\title{Standardize a symmetric matrix (distances) to fixed row (column) products}
 \usage{
 stprod(mat, vec, differ = 1e-15, niter = 1000L)
 }
@@ -19,9 +19,16 @@ stprod(mat, vec, differ = 1e-15, niter = 1000L)
 Return a distance matrix constrained size NxN.
 }
 \description{
-\code{stprod} standardizes the distance matrix to fixed rows and columns products to use \code{\link{pwd}}.
-The function iteratively constrains a logarithmic transformed matrix to know products, and in order to keep the symmetry of the matrix, at each iteration performs an average with its transpose.
-When the known products are all equal to a constant (e.g. 1), this method provides a simple and accurate way to scale a distance matrix to a doubly stochastic matrix. The new matrix will not be affected by problems arising from units with different inclusion probabilities, due to not required features of the spatial distribution of the population, such as edge effects and isolated points.
+\code{stprod} standardizes the distance matrix to fixed rows and columns
+products to use \code{\link{pwd}}. The function iteratively constrains a
+logarithmic transformed matrix to know products, and in order to keep the
+symmetry of the matrix, at each iteration performs an average with its
+transpose. When the known products are all equal to a constant (e.g. 1),
+this method provides a simple and accurate way to scale a distance matrix
+to a doubly stochastic matrix. The new matrix will not be affected by
+problems arising from units with different inclusion probabilities, due to
+not required features of the spatial distribution of the population,
+such as edge effects and isolated points.
 }
 \examples{
 \dontshow{
@@ -37,5 +44,7 @@ stand_dist <- stprod(dis, con) # standardized matrix
 }
 }
 \references{
-\insertRef{BIMJ:BIMJ1785}{Spbsampling}
+Benedetti R, Piersimoni F (2017). “A spatially balanced design with
+probability function proportional to the within sample distance.”
+\emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
 }

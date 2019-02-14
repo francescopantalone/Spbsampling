@@ -4,16 +4,18 @@
 \name{Spbsampling}
 \alias{Spbsampling}
 \alias{Spbsampling-package}
-\title{Spatially balanced sampling designs.}
+\title{Spatially balanced sampling designs}
 \description{
 Selection of spatially balanced samples.
 In particular, the implemented sampling designs allow to select probability samples spread over the population of interest, in any dimension and using any distance function (e.g. Euclidean distance, Manhattan distance).
 The implementation has been done in \code{C++} through the use of \code{Rcpp} and \code{RcppArmadillo}.
 }
 \references{
-\insertRef{BIMJ:BIMJ1785}{Spbsampling}
+Benedetti R, Piersimoni F (2017). “A spatially balanced design with
+probability function proportional to the within sample distance.”
+\emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
 
-\insertRef{fast_selection}{Spbsampling}
+Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced Samples.” \emph{arXiv}.
 }
 \author{
 Francesco Pantalone, Roberto Benedetti, Federica Piersimoni

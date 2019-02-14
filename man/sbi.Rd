@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{sbi}
 \alias{sbi}
-\title{Spatial Balance Index.}
+\title{Spatial Balance Index}
 \usage{
 sbi(dis, pi, s)
 }
@@ -17,12 +17,16 @@ sbi(dis, pi, s)
 Return the Spatial Balance Index.
 }
 \description{
-\code{sbi} computes the Spatial Balance Index (SBI), which is a measure of balance of a sample. The lower it is, the better the balance.
+\code{sbi} computes the Spatial Balance Index (SBI), which is a measure of
+balance of a sample. The lower it is, the better the balance.
 }
 \details{
-The SBI is based on Voronoi polygons. Given a sample s, each unit \eqn{i} in the sample has its own Voronoi polygon, which is
-composed by all population units closer to \eqn{i} than to any other sample unit \eqn{j}. Then, per each Voronoi polygon, define \eqn{v_{i}}
-as the sum of the inclusion probabilities of all units in the \eqn{i}-th Voronoi polygon. Finally, the variance of \eqn{v_{i}} is the SBI.
+The SBI is based on Voronoi polygons. Given a sample s, each unit \eqn{i}
+in the sample has its own Voronoi polygon, which is composed by all
+population units closer to \eqn{i} than to any other sample unit \eqn{j}.
+Then, per each Voronoi polygon, define \eqn{v_{i}} as the sum of the
+inclusion probabilities of all units in the \eqn{i}-th Voronoi polygon.
+Finally, the variance of \eqn{v_{i}} is the SBI.
 }
 \examples{
 \dontshow{
@@ -43,5 +47,6 @@ sbi(dis, pi, sample[, 2])
 }
 }
 \references{
-\insertRef{StevensDonL2004SBSo}{Spbsampling}
+Stevens DL, Olsen AR (2004). “Spatially Balanced Sampling of Natural Resources.”
+\emph{Journal of the American Statistical Association}, \strong{99}(465), 262–278.
 }

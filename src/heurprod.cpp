@@ -1,23 +1,40 @@
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
 
-//' Heuristic Product Within Distance (Spatially Balanced Sampling).
+//' Heuristic Product Within Distance (Spatially Balanced Sampling Design)
 //'
-//' The function \code{hpwd} provides a fast selection of spatially balanced samples: it is a heuristic and a fast implemention of the algorithm \code{\link{pwd}}.
-//' It generates samples approximately with the same probabilities of the \code{\link{pwd}} but with a significantly smaller number of steps.
-//' In fact, this algorithm randomly selects a sample of size \eqn{n} exactly with \eqn{n} steps, updating at each step the selection probability of not-selected units, depending on their distance from the units, that were already selected in the previous steps.
-//' To have constant inclusion probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and \eqn{N} is population size, the distance matrix has to be standardized with function \code{\link{stprod}}.
-//' Note that there is a parameter \eqn{\beta} which regulates the spread of the sample: The higher \eqn{\beta} is, the more the sample is going to be spread.
-//' This parameter is regulated by the exponent of the distance matrix (D^1 -> \eqn{\beta = 1}, D^10 -> \eqn{\beta = 10}).
+//' The function \code{hpwd} provides a fast selection of spatially balanced
+//' samples: it is a heuristic and a fast implemention of the algorithm
+//' \code{\link{pwd}}. It generates samples approximately with the same
+//' probabilities of the \code{\link{pwd}} but with a significantly smaller
+//' number of steps. In fact, this algorithm randomly selects a sample of size
+//' \eqn{n} exactly with \eqn{n} steps, updating at each step the selection
+//' probability of not-selected units, depending on their distance from the
+//' units, that were already selected in the previous steps. To have constant
+//' inclusion probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample
+//' size and \eqn{N} is population size, the distance matrix has to be
+//' standardized with function \code{\link{stprod}}. Note that there is a
+//' parameter \eqn{\beta} which regulates the spread of the sample: The higher
+//' \eqn{\beta} is, the more the sample is going to be spread. This parameter
+//' is regulated by the exponent of the distance matrix
+//' (D^1 -> \eqn{\beta = 1}, D^10 -> \eqn{\beta = 10}).
 //'
-//' @param dis A distance matrix NxN that specifies how far are all the pairs of units in the population.
+//' @param dis A distance matrix NxN that specifies how far are all the pairs
+//' of units in the population.
 //' @param nsamp Sample size.
 //' @param nrepl Number of samples to draw (default = 1).
-//' @return Return a matrix 2x\code{nrepl} with \code{nrepl} samples drawn. In particular, the element \eqn{a_{ij}}{a_ij} is the j-th unit of the population drawn in the i-th sample.
+//' @return Return a matrix 2 x \code{nrepl}, which contains the \code{nrepl}
+//' sample selected. In particular, the first column indicates the
+//' i-th sample selected while the second column contains the label of the unit
+//' selected in that specific sample. For example, if for a given row, we
+//' have 4 in the first column and 2 in the second column, it means that in
+//' the sample number 4 the unit 2 has been selected.
 //' @references
-//' \insertRef{BIMJ:BIMJ1785}{Spbsampling}
+//' Benedetti R, Piersimoni F (2017). “A spatially balanced design with
+//' probability function proportional to the within sample distance.”
+//' \emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
 //'
-//' \insertRef{fast_selection}{Spbsampling}
+//' Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced Samples.” \emph{arXiv}.
 //' @examples
 //' # Example 1
 //' # Draw 50 samples of dimension 10 without constant probabilities and beta = 1

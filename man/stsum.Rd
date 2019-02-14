@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{stsum}
 \alias{stsum}
-\title{Standardize a symmetric matrix (distances) to fixed row (column) totals.}
+\title{Standardize a symmetric matrix (distances) to fixed row (column) totals}
 \usage{
 stsum(mat, vec, differ = 1e-15, niter = 1000L)
 }
@@ -19,9 +19,16 @@ stsum(mat, vec, differ = 1e-15, niter = 1000L)
 Return a distance matrix constrained size NxN.
 }
 \description{
-\code{stsum} standardizes the distance matrix to fixed rows and columns products for using \code{\link{swd}}.
-The function iteratively constrains the rows sums of the matrix to know totals, and in order to keep the symmetry of the matrix, at each iteration performs an average with its transpose.
-When the known totals are all equal to a constant (e.g. 1), this method provides a simple and accurate way to scale a distance matrix to a doubly stochastic matrix. The new matrix will not be affected by problems arising from units with different inclusion probabilities, due to not required features of the spatial distribution of the population, such as edge effects and isolated points.
+\code{stsum} standardizes the distance matrix to fixed rows and columns
+products for using \code{\link{swd}}. The function iteratively constrains
+the rows sums of the matrix to know totals, and in order to keep the
+symmetry of the matrix, at each iteration performs an average with its
+transpose. When the known totals are all equal to a constant (e.g. 1),
+this method provides a simple and accurate way to scale a distance matrix
+to a doubly stochastic matrix. The new matrix will not be affected by
+problems arising from units with different inclusion probabilities, due to
+not required features of the spatial distribution of the population,
+such as edge effects and isolated points.
 }
 \examples{
 dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
@@ -29,5 +36,7 @@ con <- rep(1, nrow(dis)) # vector of constraints
 stand_dist <- stsum(dis, con) # standardized matrix
 }
 \references{
-\insertRef{BIMJ:BIMJ1785}{Spbsampling}
+Benedetti R, Piersimoni F (2017). “A spatially balanced design with
+probability function proportional to the within sample distance.”
+\emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
 }
