@@ -1,3 +1,9 @@
+# Spbsampling 1.2.0 (not yet on CRAN)
+
+* Removed **Rdpack** from `Imports`.
+* Minor improvements of guides.
+* Changed name of file `heurprod.cpp` to `hpwd.cpp` 
+
 # Spbsampling 1.1.0
 
 ## New features
