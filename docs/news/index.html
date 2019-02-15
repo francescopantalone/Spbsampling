@@ -106,6 +106,7 @@
 <a href="#spbsampling-120-not-yet-on-cran" class="anchor"></a>Spbsampling 1.2.0 (not yet on CRAN)<small> Unreleased </small>
 </h1>
 <ul>
+<li>Changed output of functions <code><a href="../reference/pwd.html">pwd()</a></code>, <code><a href="../reference/swd.html">swd()</a></code> and <code><a href="../reference/hpwd.html">hpwd()</a></code> from a matrix of dimension <code>(nsamp * nrepl) * 2</code> to a matrix of dimension <code>nrepl * nsamp</code>.</li>
 <li>Removed <strong>Rdpack</strong> from <code>Imports</code>.</li>
 <li>Minor improvements of guides.</li>
 <li>Changed name of file <code>heurprod.cpp</code> to <code>hpwd.cpp</code>
@@ -128,9 +129,9 @@
 <li>In the function <code><a href="../reference/stprod.html">stprod()</a></code> and <code><a href="../reference/stsum.html">stsum()</a></code> there is no print for each convergence step anymore.</li>
 </ul>
 </div>
-<div id="improvement-under-the-hood" class="section level2">
+<div id="improvements-under-the-hood" class="section level2">
 <h2 class="hasAnchor">
-<a href="#improvement-under-the-hood" class="anchor"></a>Improvement under the hood</h2>
+<a href="#improvements-under-the-hood" class="anchor"></a>Improvements under the hood</h2>
 <ul>
 <li>The functions <code><a href="../reference/pwd.html">pwd()</a></code> and <code><a href="../reference/swd.html">swd()</a></code> now take advantages of the Armadillo library.</li>
 <li>The function <code><a href="../reference/stprod.html">stprod()</a></code> is now implemented in C++ through the Armadillo library, using <strong>Rcpp</strong> and <strong>RcppArmadillo</strong>.</li>

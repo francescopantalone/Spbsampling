@@ -1,5 +1,6 @@
 # Spbsampling 1.2.0 (not yet on CRAN)
 
+* Changed output of functions `pwd()`, `swd()` and `hpwd()` from a matrix of dimension `(nsamp * nrepl) * 2` to a matrix of dimension `nrepl * nsamp`.
 * Removed **Rdpack** from `Imports`.
 * Minor improvements of guides.
 * Changed name of file `heurprod.cpp` to `hpwd.cpp` 
@@ -15,7 +16,7 @@
 * In the function `stprod()` and `stsum()` the parameter `niter` is now set to default at `1000`.
 * In the function `stprod()` and `stsum()` there is no print for each convergence step anymore. 
 
-## Improvement under the hood
+## Improvements under the hood
 
 * The functions `pwd()` and `swd()` now take advantages of the Armadillo library.
 * The function `stprod()` is now implemented in C++ through the Armadillo library, using **Rcpp** and **RcppArmadillo**.
