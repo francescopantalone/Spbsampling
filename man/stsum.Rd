@@ -16,19 +16,21 @@ stsum(mat, vec, differ = 1e-15, niter = 1000L)
 \item{niter}{An integer with the maximum number of iterations (default = 1000).}
 }
 \value{
-Return a distance matrix constrained size NxN.
+Return a standardized distance matrix of size NxN.
 }
 \description{
-\code{stsum} standardizes the distance matrix to fixed rows and columns
-products for using \code{\link{swd}}. The function iteratively constrains
-the rows sums of the matrix to know totals, and in order to keep the
-symmetry of the matrix, at each iteration performs an average with its
-transpose. When the known totals are all equal to a constant (e.g. 1),
-this method provides a simple and accurate way to scale a distance matrix
-to a doubly stochastic matrix. The new matrix will not be affected by
-problems arising from units with different inclusion probabilities, due to
-not required features of the spatial distribution of the population,
-such as edge effects and isolated points.
+\code{stsum} standardizes a distance matrix to fixed rows and columns
+products. The function iteratively constrains the rows sums of the matrix
+to know totals, and in order to keep the symmetry of the matrix, at each
+iteration performs an average with its transpose. When the known totals are
+all equal to a constant (e.g. 1), this method provides a simple and
+accurate way to scale a distance matrix to a doubly stochastic matrix.
+}
+\details{
+The standardized matrix will not be affected by problems arising from units
+with different inclusion probabilities caused by undesired features of the
+spatial distribution of the population, as edge effects and/or isolated
+points.
 }
 \examples{
 dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix

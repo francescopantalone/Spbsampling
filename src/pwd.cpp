@@ -3,17 +3,15 @@
 
 //' Product Within Distance (Spatially Balanced Sampling Design)
 //'
-//' This is an implemention of a spatially balanced design, with a probability
-//' function proportional to the within sample distance, using the product of
-//' distance as an index of the within sample distance
-//' (Product Within Distance, \code{pwd} in short). To have constant inclusion
-//' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
-//' \eqn{N} is population size, the distance matrix has to be standardized with
-//' function \code{\link{stprod}}. Note that there is a parameter \eqn{\beta}
-//' which regulates the spread of the sample: The higher \eqn{\beta} is, the
-//' more the sample is going to be spread. This parameter is regulated by the
-//' exponent of the distance matrix
-//' (D^1 -> \eqn{\beta = 1}, D^10 -> \eqn{\beta = 10}).
+//' \code{pwd} selects spatially balanced samples through the use of the
+//' Product Within Distance design (PWD). The level of the spread can be
+//' choosen through the parameter \eqn{\beta}, which is regulated by the
+//' exponent of the distance matrix (D^1 -> \eqn{\beta = 1},
+//' D^10 -> \eqn{\beta = 10}). The higher \eqn{\beta} is, the more the sample
+//' is going to be spread. To have constant inclusion probabilities
+//' \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and \eqn{N} is
+//' population size, the distance matrix has to be standardized with function
+//' \code{\link{stprod}}.
 //'
 //' @param dis A distance matrix NxN that specifies how far are all the pairs
 //' of units in the population.

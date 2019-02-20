@@ -16,19 +16,22 @@ stprod(mat, vec, differ = 1e-15, niter = 1000L)
 \item{niter}{An integer with the maximum number of iterations (default = 1000).}
 }
 \value{
-Return a distance matrix constrained size NxN.
+Return a standardized distance matrix of size NxN.
 }
 \description{
-\code{stprod} standardizes the distance matrix to fixed rows and columns
-products to use \code{\link{pwd}}. The function iteratively constrains a
-logarithmic transformed matrix to know products, and in order to keep the
-symmetry of the matrix, at each iteration performs an average with its
-transpose. When the known products are all equal to a constant (e.g. 1),
-this method provides a simple and accurate way to scale a distance matrix
-to a doubly stochastic matrix. The new matrix will not be affected by
-problems arising from units with different inclusion probabilities, due to
-not required features of the spatial distribution of the population,
-such as edge effects and isolated points.
+\code{stprod} standardizes a distance matrix to fixed rows and columns
+products. The function iteratively constrains a logarithmic transformed
+matrix to know products, and in order to keep the symmetry of the matrix,
+at each iteration performs an average with its transpose. When the known
+products are all equal to a constant (e.g. 1), this method provides a
+simple and accurate way to scale a distance matrix to a doubly stochastic
+matrix.
+}
+\details{
+The standardized matrix will not be affected by problems arising from units
+with different inclusion probabilities caused by undesired features of the
+spatial distribution of the population, as edge effects and/or isolated
+points.
 }
 \examples{
 \dontshow{

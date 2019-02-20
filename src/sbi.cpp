@@ -35,7 +35,7 @@
 //' nsamp <- 100 # sample size
 //' pi <- rep(100 / nrow(dis), nrow(dis)) # vector of probabilities inclusion
 //' sample <- pwd(stand_dist, 100) # sample
-//' sbi(dis, pi, sample[, 2])
+//' sbi(dis, pi, sample[1,])
 //' }
 //' @importFrom stats var
 //' @export

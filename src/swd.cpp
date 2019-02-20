@@ -3,13 +3,11 @@
 
 //' Sum Within Distance (Spatially Balanced Sampling Design)
 //'
-//' This is an implemention of a spatially balanced design, with a probability
-//' function proportional to the within sample distance, using the sum of
-//' distance as an index of the within sample distance (Sum Within Distance,
-//' \code{swd} in short). To have a constant inclusion probabilities
-//' \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and \eqn{N} is
-//' population size, standardize the distance matrix with function
-//' \code{\link{stsum}}.
+//' \code{swd} selects spatially balanced samples through the use of the
+//' Sum Within Distance design (SWD). To have a constant inclusion
+//' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
+//' \eqn{N} is population size, the distance matrix has to be standardized with
+//' function \code{\link{stsum}}.
 //'
 //' @param dis A distance matrix NxN that specifies how far are all the pairs
 //' of units in the population.
