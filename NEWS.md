@@ -1,4 +1,4 @@
-# Spbsampling 1.2.0 (not yet on CRAN)
+# Spbsampling 1.2.0
 
 * Changed output of functions `pwd()`, `swd()` and `hpwd()` from a matrix of dimension `(nsamp * nrepl) * 2` to a matrix of dimension `nrepl * nsamp`.
 * Removed **Rdpack** from `Imports`.
