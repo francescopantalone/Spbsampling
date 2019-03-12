@@ -31,8 +31,10 @@
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
 #' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
+#' \url{https://doi.org/10.1002/bimj.201600194}
 #'
 #' Benedetti R, Piersimoni F (2017). Fast Selection of Spatially Balanced Samples. \emph{arXiv}.
+#' \url{https://arxiv.org/abs/1710.09116}
 #' @examples
 #' # Example 1
 #' # Draw 50 samples of dimension 10 without constant probabilities and beta = 1
@@ -86,6 +88,7 @@ hpwd <- function(dis, nsamp, nrepl = 1L) {
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
 #' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
+#' \url{https://doi.org/10.1002/bimj.201600194}
 #' @examples
 #' # Example 1
 #' # Draw 20 samples of dimension 15 without constant probabilities and with beta = 1
@@ -142,6 +145,7 @@ pwd <- function(dis, nsamp, nrepl = 1L, niter = 10L) {
 #' @references
 #' Stevens DL, Olsen AR (2004). Spatially Balanced Sampling of Natural Resources.
 #' \emph{Journal of the American Statistical Association}, \strong{99}(465), 262-278.
+#' \url{https://doi.org/10.1198/016214504000000250}
 #' @examples
 #' \dontshow{
 #' d <- matrix(runif(200), 100, 2)
@@ -189,6 +193,7 @@ sbi <- function(dis, pi, s) {
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
 #' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
+#' \url{https://doi.org/10.1002/bimj.201600194}
 #' @examples
 #' \dontshow{
 #' d <- matrix(runif(200), 100, 2)
@@ -229,6 +234,7 @@ stprod <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
 #' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
+#' \url{https://doi.org/10.1002/bimj.201600194}
 #' @examples
 #' dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
@@ -261,6 +267,7 @@ stsum <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
 #' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
+#' \url{https://doi.org/10.1002/bimj.201600194}
 #' @examples
 #' # Example 1
 #' # Draw 20 samples of dimension 15 without constant probabilities and beta = 1
