@@ -3,7 +3,7 @@
 
 //' Product Within Distance (Spatially Balanced Sampling Design)
 //'
-//' \code{pwd} selects spatially balanced samples through the use of the
+//' Selects spatially balanced samples through the use of the
 //' Product Within Distance design (PWD). The level of the spread can be
 //' choosen through the parameter \eqn{\beta}, which is regulated by the
 //' exponent of the distance matrix (D^1 -> \eqn{\beta = 1},

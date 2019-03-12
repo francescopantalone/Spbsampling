@@ -23,7 +23,7 @@ Return a matrix \code{nrepl} x \code{nsamp}, which contains the
 the i-th row contains all labels of units selected in the i-th sample.
 }
 \description{
-\code{pwd} selects spatially balanced samples through the use of the
+Selects spatially balanced samples through the use of the
 Product Within Distance design (PWD). The level of the spread can be
 choosen through the parameter \eqn{\beta}, which is regulated by the
 exponent of the distance matrix (D^1 -> \eqn{\beta = 1},

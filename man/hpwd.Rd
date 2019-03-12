@@ -20,7 +20,7 @@ Return a matrix \code{nrepl} x \code{nsamp}, which contains the
 the i-th row contains all labels of units selected in the i-th sample.
 }
 \description{
-\code{hpwd} selects spatially balanced samples through the use of
+Selects spatially balanced samples through the use of
 Heuristic Product Within Distance design (HPWD). The level of the spread
 can be choosen through the parameter \eqn{\beta}, which is is regulated by
 the exponent of the distance matrix (D^1 -> \eqn{\beta = 1},

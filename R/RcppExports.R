@@ -3,7 +3,7 @@
 
 #' Heuristic Product Within Distance (Spatially Balanced Sampling Design)
 #'
-#' \code{hpwd} selects spatially balanced samples through the use of
+#' Selects spatially balanced samples through the use of
 #' Heuristic Product Within Distance design (HPWD). The level of the spread
 #' can be choosen through the parameter \eqn{\beta}, which is is regulated by
 #' the exponent of the distance matrix (D^1 -> \eqn{\beta = 1},
@@ -63,7 +63,7 @@ hpwd <- function(dis, nsamp, nrepl = 1L) {
 
 #' Product Within Distance (Spatially Balanced Sampling Design)
 #'
-#' \code{pwd} selects spatially balanced samples through the use of the
+#' Selects spatially balanced samples through the use of the
 #' Product Within Distance design (PWD). The level of the spread can be
 #' choosen through the parameter \eqn{\beta}, which is regulated by the
 #' exponent of the distance matrix (D^1 -> \eqn{\beta = 1},
@@ -125,7 +125,7 @@ pwd <- function(dis, nsamp, nrepl = 1L, niter = 10L) {
 
 #' Spatial Balance Index
 #'
-#' \code{sbi} computes the Spatial Balance Index (SBI), which is a measure of
+#' Computes the Spatial Balance Index (SBI), which is a measure of
 #' balance of a sample. The lower it is, the better the balance.
 #'
 #' The SBI is based on Voronoi polygons. Given a sample s, each unit \eqn{i}
@@ -167,7 +167,7 @@ sbi <- function(dis, pi, s) {
 
 #' Standardize a symmetric matrix (distances) to fixed row (column) products
 #'
-#' \code{stprod} standardizes a distance matrix to fixed rows and columns
+#' Standardizes a distance matrix to fixed rows and columns
 #' products. The function iteratively constrains a logarithmic transformed
 #' matrix to know products, and in order to keep the symmetry of the matrix,
 #' at each iteration performs an average with its transpose. When the known
@@ -208,7 +208,7 @@ stprod <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 
 #' Standardize a symmetric matrix (distances) to fixed row (column) totals
 #'
-#' \code{stsum} standardizes a distance matrix to fixed rows and columns
+#' Standardizes a distance matrix to fixed rows and columns
 #' products. The function iteratively constrains the rows sums of the matrix
 #' to know totals, and in order to keep the symmetry of the matrix, at each
 #' iteration performs an average with its transpose. When the known totals are
@@ -240,7 +240,7 @@ stsum <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 
 #' Sum Within Distance (Spatially Balanced Sampling Design)
 #'
-#' \code{swd} selects spatially balanced samples through the use of the
+#' Selects spatially balanced samples through the use of the
 #' Sum Within Distance design (SWD). To have a constant inclusion
 #' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
 #' \eqn{N} is population size, the distance matrix has to be standardized with

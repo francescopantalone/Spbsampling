@@ -3,7 +3,7 @@
 
 //' Spatial Balance Index
 //'
-//' \code{sbi} computes the Spatial Balance Index (SBI), which is a measure of
+//' Computes the Spatial Balance Index (SBI), which is a measure of
 //' balance of a sample. The lower it is, the better the balance.
 //'
 //' The SBI is based on Voronoi polygons. Given a sample s, each unit \eqn{i}

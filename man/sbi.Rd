@@ -17,7 +17,7 @@ sbi(dis, pi, s)
 Return the Spatial Balance Index.
 }
 \description{
-\code{sbi} computes the Spatial Balance Index (SBI), which is a measure of
+Computes the Spatial Balance Index (SBI), which is a measure of
 balance of a sample. The lower it is, the better the balance.
 }
 \details{

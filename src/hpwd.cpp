@@ -3,7 +3,7 @@
 
 //' Heuristic Product Within Distance (Spatially Balanced Sampling Design)
 //'
-//' \code{hpwd} selects spatially balanced samples through the use of
+//' Selects spatially balanced samples through the use of
 //' Heuristic Product Within Distance design (HPWD). The level of the spread
 //' can be choosen through the parameter \eqn{\beta}, which is is regulated by
 //' the exponent of the distance matrix (D^1 -> \eqn{\beta = 1},

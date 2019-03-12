@@ -3,7 +3,7 @@
 
 //' Sum Within Distance (Spatially Balanced Sampling Design)
 //'
-//' \code{swd} selects spatially balanced samples through the use of the
+//' Selects spatially balanced samples through the use of the
 //' Sum Within Distance design (SWD). To have a constant inclusion
 //' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
 //' \eqn{N} is population size, the distance matrix has to be standardized with

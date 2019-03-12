@@ -1,8 +1,10 @@
 #' Spatially balanced sampling designs
 #'
-#' Selection of spatially balanced samples.
-#' In particular, the implemented sampling designs allow to select probability samples spread over the population of interest, in any dimension and using any distance function (e.g. Euclidean distance, Manhattan distance).
-#' The implementation has been done in \code{C++} through the use of \code{Rcpp} and \code{RcppArmadillo}.
+#' Selection of spatially balanced samples. In particular, the implemented
+#' sampling designs allow to select probability samples spread over the
+#' population of interest, in any dimension and using any distance function
+#' (e.g. Euclidean distance, Manhattan distance). The implementation has been
+#' done in \code{C++} through the use of \code{Rcpp} and \code{RcppArmadillo}.
 #' @author
 #' Francesco Pantalone, Roberto Benedetti, Federica Piersimoni
 #'

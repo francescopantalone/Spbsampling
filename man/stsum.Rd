@@ -19,7 +19,7 @@ stsum(mat, vec, differ = 1e-15, niter = 1000L)
 Return a standardized distance matrix of size NxN.
 }
 \description{
-\code{stsum} standardizes a distance matrix to fixed rows and columns
+Standardizes a distance matrix to fixed rows and columns
 products. The function iteratively constrains the rows sums of the matrix
 to know totals, and in order to keep the symmetry of the matrix, at each
 iteration performs an average with its transpose. When the known totals are

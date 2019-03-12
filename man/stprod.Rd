@@ -19,7 +19,7 @@ stprod(mat, vec, differ = 1e-15, niter = 1000L)
 Return a standardized distance matrix of size NxN.
 }
 \description{
-\code{stprod} standardizes a distance matrix to fixed rows and columns
+Standardizes a distance matrix to fixed rows and columns
 products. The function iteratively constrains a logarithmic transformed
 matrix to know products, and in order to keep the symmetry of the matrix,
 at each iteration performs an average with its transpose. When the known
