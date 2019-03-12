@@ -10,11 +10,11 @@
 #'
 #' Maintainer: Francesco Pantalone \email{pantalone.fra@@gmail.com}
 #' @references
-#' Benedetti R, Piersimoni F (2017). “A spatially balanced design with
-#' probability function proportional to the within sample distance.”
-#' \emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
+#' Benedetti R, Piersimoni F (2017). A spatially balanced design with
+#' probability function proportional to the within sample distance.
+#' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
 #'
-#' Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced Samples.” \emph{arXiv}.
+#' Benedetti R, Piersimoni F (2017). Fast Selection of Spatially Balanced Samples. \emph{arXiv}.
 #' @docType package
 #' @name Spbsampling
 #'

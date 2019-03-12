@@ -47,6 +47,6 @@ sbi(dis, pi, sample[1,])
 }
 }
 \references{
-Stevens DL, Olsen AR (2004). “Spatially Balanced Sampling of Natural Resources.”
-\emph{Journal of the American Statistical Association}, \strong{99}(465), 262–278.
+Stevens DL, Olsen AR (2004). Spatially Balanced Sampling of Natural Resources.
+\emph{Journal of the American Statistical Association}, \strong{99}(465), 262-278.
 }

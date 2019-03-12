@@ -28,11 +28,11 @@
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
-//' Benedetti R, Piersimoni F (2017). “A spatially balanced design with
-//' probability function proportional to the within sample distance.”
-//' \emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
+//' Benedetti R, Piersimoni F (2017). A spatially balanced design with
+//' probability function proportional to the within sample distance.
+//' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
 //'
-//' Benedetti R, Piersimoni F (2017). “Fast Selection of Spatially Balanced Samples.” \emph{arXiv}.
+//' Benedetti R, Piersimoni F (2017). Fast Selection of Spatially Balanced Samples. \emph{arXiv}.
 //' @examples
 //' # Example 1
 //' # Draw 50 samples of dimension 10 without constant probabilities and beta = 1

@@ -21,7 +21,11 @@ The dataset is a rearrangement from the data released by MEF - Dipartimento dell
 income_emilia
 }
 \description{
-The dataset contains the total income of the municipalities in the region "Emilia Romagna", in Italy. Each municipality is defined by their own ISTAT (Istituto nazionale di statistica, Italy) code, a name and its geographical positions (through a pair of coordinates).
-For each of them we have the following auxiliary variables: province, number of taxpayers and total income of the municipality.
+The dataset contains the total income of the municipalities in the region
+"Emilia Romagna", in Italy. Each municipality is defined by their own ISTAT
+(Istituto nazionale di statistica, Italy) code, a name and its geographical
+positions (through a pair of coordinates). For each of them we have the
+following auxiliary variables: province, number of taxpayers and total
+income of the municipality.
 }
 \keyword{datasets}

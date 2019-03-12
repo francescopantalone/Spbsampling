@@ -19,16 +19,20 @@
   \item{z39}{ninth value of the unit}
         }}
 \source{
-Benedetti R, Piersimoni F (2017). “A spatially balanced design with
-probability function proportional to the within sample distance.”
-\emph{Biometrical Journal}, \strong{59}(5), 1067–1084.
+Benedetti R, Piersimoni F (2017). A spatially balanced design with
+probability function proportional to the within sample distance.
+\emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
 }
 \usage{
 simul3
 }
 \description{
-The dataset contains a simulated georeferenced population of dimension \eqn{N=1000}.
-The coordinates are generated in the range \eqn{[0,1]} as a simulated realization of a particular random point pattern: the Neyman-Scott process with Cauchy cluster kernel.
-The nine values for each unit are generated according to the outcome of a Gaussian stochastic process, with an intensity dependence parameter \eqn{\rho=0.1} (that means high dependence) and with a spatial trend \eqn{x_{1}+x_{2}+\epsilon}.
+The dataset contains a simulated georeferenced population of dimension
+\eqn{N=1000}. The coordinates are generated in the range \eqn{[0,1]} as a
+simulated realization of a particular random point pattern: the Neyman-Scott
+process with Cauchy cluster kernel. The nine values for each unit are
+generated according to the outcome of a Gaussian stochastic process, with an
+intensity dependence parameter \eqn{\rho=0.1} (that means high dependence)
+and with a spatial trend \eqn{x_{1}+x_{2}+\epsilon}.
 }
 \keyword{datasets}

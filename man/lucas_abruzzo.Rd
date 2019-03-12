@@ -21,13 +21,20 @@ The dataset contains the data from LUCAS 2012 for the region "Abruzzo", Italy.
 lucas_abruzzo
 }
 \description{
-The land use/cover area frame statistical survey, abbreviated as LUCAS, is a European field survey program funded and executed by Eurostat.
-Its objective is to set up area frame surveys for the provision of coherent and harmonised statistics on land use and land cover in the European Union (EU).
-Note that in LUCAS survey the concept of land is extended to inland water areas (lakes, river, coastal areas, etc.) and does not embrace uses below the earth's surface (mine deposits, subways, etc.).
-The LUCAS survey is a point survey, in particular the basic unit of observation is a circle with a radius of 1.5m (corresponding to an identifiable point on an orthophoto).
-In the classification there is a clear distinction between land cover and land use: land cover means physical cover ("material") observed at the earth's surface; land use means socio-economic function of the observed earth's surface.
-For each of both we assign a code to identified which type the point is.
-Land cover has 8 main categories, which are indicated by letter:
+The land use/cover area frame statistical survey, abbreviated as LUCAS, is a
+European field survey program funded and executed by Eurostat. Its objective
+is to set up area frame surveys for the provision of coherent and harmonised
+statistics on land use and land cover in the European Union (EU). Note that
+in LUCAS survey the concept of land is extended to inland water areas
+(lakes, river, coastal areas, etc.) and does not embrace uses below the
+earth's surface (mine deposits, subways, etc.). The LUCAS survey is a point
+survey, in particular the basic unit of observation is a circle with a
+radius of 1.5m (corresponding to an identifiable point on an orthophoto).
+In the classification there is a clear distinction between land cover and
+land use: land cover means physical cover ("material") observed at the
+earth's surface; land use means socio-economic function of the observed
+earth's surface. For each of both we assign a code to identified which type
+the point is. Land cover has 8 main categories, which are indicated by letter:
 \describe{
     \item{A}{artificial land}
     \item{B}{cropland}
@@ -38,7 +45,9 @@ Land cover has 8 main categories, which are indicated by letter:
     \item{G}{water}
     \item{H}{wetlands}
 }
-Every main category has subclasses, which are indicated by the combination of the letter of the category and digits. Altogether there are 84 classes.
-Land use has 14 main categories. It has altogether 33 classes, which are indicated by the combination of the letter “U” and three digits.
+Every main category has subclasses, which are indicated by the combination
+of the letter of the category and digits. Altogether there are 84 classes.
+Land use has 14 main categories. It has altogether 33 classes, which are
+indicated by the combination of the letter U and three digits.
 }
 \keyword{datasets}
