@@ -9,15 +9,15 @@
 //' \eqn{N} is population size, the distance matrix has to be standardized with
 //' function \code{\link{stprod}}.
 //'
-//' @param dis A distance matrix NxN that specifies how far are all the pairs
-//' of units in the population.
+//' @param dis A distance matrix NxN that specifies how far all the pairs
+//' of units in the population are.
 //' @param nsamp Sample size.
 //' @param bexp Parameter \eqn{\beta} for the algorithm. The higher
 //' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 //' @param nrepl Number of samples to draw (default = 1).
 //' @param niter Number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
-//' @return Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
@@ -41,7 +41,7 @@
 //'
 //' # Example 3
 //' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-//' # equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20
+//' # equal to nsamp/N, with N = population size, and an increased level of spread, bexp = 20
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix

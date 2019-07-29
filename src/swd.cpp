@@ -9,15 +9,15 @@
 //' \eqn{N} is population size, the distance matrix has to be standardized with
 //' function \code{\link{stsum}}.
 //'
-//' @param dis A distance matrix NxN that specifies how far are all the pairs
-//' of units in the population.
+//' @param dis A distance matrix NxN that specifies how far all the pairs
+//' of units in the population are.
 //' @param nsamp Sample size.
 //' @param bexp Parameter \eqn{\beta} for the algorithm. The higher
 //' \eqn{\beta} is, the more the sample is going to be spread.
 //' @param nrepl Number of samples to draw (default = 1).
 //' @param niter Number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
-//' @return Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
@@ -27,30 +27,30 @@
 //' \url{https://doi.org/10.1002/bimj.201600194}
 //' @examples
 //' # Example 1
-//' # Draw 20 samples of dimension 15 without constant probabilities and beta = 1
+//' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 //' dis <- as.matrix(dist(cbind(income_emilia$x_coord, income_emilia$y_coord))) # distance matrix
-//' nsamp <- 15  # sample size
-//' nrepl <- 20  # number of samples to draw
-//' niter <- 10  # number of iterations in the algorithm
-//' bexp <- 10   # parameter beta
-//' samples <- swd(dis, niter, nsamp, nrepl, bexp)  # drawn samples
+//' s <- swd(dis = dis, nsamp = 15)  # drawn sample
 //' \donttest{
 //' # Example 2
-//' # Draw 20 samples of dimension 15 with constant probabilities equal to nsamp/N and beta = 10
-//' # with N = population size
+//' # Draw 1 sample of dimension 15 with constant inclusion probabilities
+//' # equal to nsamp/N, with N = population size
 //' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
-//' nsamp <- 15  # sample size
-//' nrepl <- 20  # numbers of samples to drawn
-//' niter <- 10  # numbers of iterations in the algorithm
-//' bexp <- 10   # parameter beta
-//' vec <- rep(1, nrow(dis)) # vector of constraints
-//' stand_dist <- stsum(dis, vec, 1e-15, 1000) # standardized matrix
-//' samples <- swd(stand_dist, niter, nsamp, nrepl, bexp)  # drawn samples
+//' con <- rep(1, nrow(dis)) # vector of constraints
+//' stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+//' s <- swd(dis = stand_dist, nsamp = 15)  # drawn sample
+//'
+//' # Example 3
+//' # Draw 2 samples of dimension 15 with constant inclusion probabilities
+//' # equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20
+//' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
+//' con <- rep(1, nrow(dis)) # vector of constraints
+//' stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+//' s <- swd(dis = stand_dist, nsamp = 15, bexp = 20, nrepl = 2)  # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]
 
-arma::mat swd (arma::mat dis, int nsamp, int bexp, int nrepl = 1, int niter = 10)
+arma::mat swd (arma::mat dis, int nsamp, double bexp = 10, int nrepl = 1, int niter = 10)
 {
   int npo = dis.n_rows;
   if(dis.is_square() == FALSE)

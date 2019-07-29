@@ -15,7 +15,8 @@
   \item{lu}{land use code}
         }}
 \source{
-The dataset contains the data from LUCAS 2012 for the region "Abruzzo", Italy.
+The dataset is a rearrangement of the data from LUCAS 2012 for the region "Abruzzo", Italy.
+\url{https://ec.europa.eu/eurostat/web/lucas/data/primary-data/2012}
 }
 \usage{
 lucas_abruzzo

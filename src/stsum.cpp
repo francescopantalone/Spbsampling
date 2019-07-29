@@ -4,7 +4,7 @@
 //' Standardize a symmetric matrix (distances) to fixed row (column) totals
 //'
 //' Standardizes a distance matrix to fixed rows and columns
-//' products. The function iteratively constrains the rows sums of the matrix
+//' totals. The function iteratively constrains the rows sums of the matrix
 //' to know totals, and in order to keep the symmetry of the matrix, at each
 //' iteration performs an average with its transpose. When the known totals are
 //' all equal to a constant (e.g. 1), this method provides a simple and
@@ -19,7 +19,7 @@
 //' @param  vec A vector of row (column) constraints.
 //' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 //' @param niter An integer with the maximum number of iterations (default = 1000).
-//' @return Return a standardized distance matrix of size NxN.
+//' @return Returns a standardized distance matrix of size NxN.
 //' @references
 //' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 //' probability function proportional to the within sample distance.
@@ -28,7 +28,7 @@
 //' @examples
 //' dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
-//' stand_dist <- stsum(dis, con) # standardized matrix
+//' stand_dist <- stsum(mat = dis, vec = con) # standardized matrix
 //' @export
 // [[Rcpp::export]]
 

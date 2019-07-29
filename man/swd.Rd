@@ -4,11 +4,11 @@
 \alias{swd}
 \title{Sum Within Distance (Spatially Balanced Sampling Design)}
 \usage{
-swd(dis, nsamp, bexp, nrepl = 1L, niter = 10L)
+swd(dis, nsamp, bexp = 10, nrepl = 1L, niter = 10L)
 }
 \arguments{
-\item{dis}{A distance matrix NxN that specifies how far are all the pairs
-of units in the population.}
+\item{dis}{A distance matrix NxN that specifies how far all the pairs
+of units in the population are.}
 
 \item{nsamp}{Sample size.}
 
@@ -21,7 +21,7 @@ of units in the population.}
 better but require more time. Usually 10 is very efficient (default = 10).}
 }
 \value{
-Return a matrix \code{nrepl} x \code{nsamp}, which contains the
+Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
 \code{nrepl} selected samples, each of them stored in a row. In particular,
 the i-th row contains all labels of units selected in the i-th sample.
 }
@@ -34,25 +34,25 @@ function \code{\link{stsum}}.
 }
 \examples{
 # Example 1
-# Draw 20 samples of dimension 15 without constant probabilities and beta = 1
+# Draw 1 sample of dimension 15 without constant inclusion probabilities
 dis <- as.matrix(dist(cbind(income_emilia$x_coord, income_emilia$y_coord))) # distance matrix
-nsamp <- 15  # sample size
-nrepl <- 20  # number of samples to draw
-niter <- 10  # number of iterations in the algorithm
-bexp <- 10   # parameter beta
-samples <- swd(dis, niter, nsamp, nrepl, bexp)  # drawn samples
+s <- swd(dis = dis, nsamp = 15)  # drawn sample
 \donttest{
 # Example 2
-# Draw 20 samples of dimension 15 with constant probabilities equal to nsamp/N and beta = 10
-# with N = population size
+# Draw 1 sample of dimension 15 with constant inclusion probabilities
+# equal to nsamp/N, with N = population size
 dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
-nsamp <- 15  # sample size
-nrepl <- 20  # numbers of samples to drawn
-niter <- 10  # numbers of iterations in the algorithm
-bexp <- 10   # parameter beta
-vec <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(dis, vec, 1e-15, 1000) # standardized matrix
-samples <- swd(stand_dist, niter, nsamp, nrepl, bexp)  # drawn samples
+con <- rep(1, nrow(dis)) # vector of constraints
+stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+s <- swd(dis = stand_dist, nsamp = 15)  # drawn sample
+
+# Example 3
+# Draw 2 samples of dimension 15 with constant inclusion probabilities
+# equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20
+dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
+con <- rep(1, nrow(dis)) # vector of constraints
+stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+s <- swd(dis = stand_dist, nsamp = 15, bexp = 20, nrepl = 2)  # drawn samples
 }
 }
 \references{

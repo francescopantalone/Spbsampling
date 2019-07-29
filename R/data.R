@@ -1,11 +1,10 @@
 #' The income of municipalities of "Emilia Romagna".
 #'
 #' The dataset contains the total income of the municipalities in the region
-#' "Emilia Romagna", in Italy. Each municipality is defined by their own ISTAT
-#' (Istituto nazionale di statistica, Italy) code, a name and its geographical
-#' positions (through a pair of coordinates). For each of them we have the
-#' following auxiliary variables: province, number of taxpayers and total
-#' income of the municipality.
+#' "Emilia Romagna", in Italy, for the year 2015. Each municipality is defined
+#' by their own ISTAT (Istituto nazionale di statistica, Italy) code and a name.
+#' For each municipality there are the following auxiliary variables: province,
+#' number of taxpayers and spatial coordinates (geographical position).
 #'
 #' @format A data frame with 334 rows and 7 variables:
 #' \describe{
@@ -19,7 +18,8 @@
 #'          }
 #'
 #' @source
-#' The dataset is a rearrangement from the data released by MEF - Dipartimento delle Finanze (Italy).
+#' The dataset is a rearrangement from the data released by
+#' the Italian Finance Department, MEF - Dipartimento delle Finanze (Italy).
 "income_emilia"
 
 #' Simulated Population 1.
@@ -158,7 +158,8 @@
 #'         }
 #'
 #' @source
-#' The dataset contains the data from LUCAS 2012 for the region "Abruzzo", Italy.
+#' The dataset is a rearrangement of the data from LUCAS 2012 for the region "Abruzzo", Italy.
+#' \url{https://ec.europa.eu/eurostat/web/lucas/data/primary-data/2012}
 "lucas_abruzzo"
 
 

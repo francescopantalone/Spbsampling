@@ -16,11 +16,11 @@ stsum(mat, vec, differ = 1e-15, niter = 1000L)
 \item{niter}{An integer with the maximum number of iterations (default = 1000).}
 }
 \value{
-Return a standardized distance matrix of size NxN.
+Returns a standardized distance matrix of size NxN.
 }
 \description{
 Standardizes a distance matrix to fixed rows and columns
-products. The function iteratively constrains the rows sums of the matrix
+totals. The function iteratively constrains the rows sums of the matrix
 to know totals, and in order to keep the symmetry of the matrix, at each
 iteration performs an average with its transpose. When the known totals are
 all equal to a constant (e.g. 1), this method provides a simple and
@@ -35,7 +35,7 @@ points.
 \examples{
 dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(dis, con) # standardized matrix
+stand_dist <- stsum(mat = dis, vec = con) # standardized matrix
 }
 \references{
 Benedetti R, Piersimoni F (2017). A spatially balanced design with
