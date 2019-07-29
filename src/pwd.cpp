@@ -4,18 +4,16 @@
 //' Product Within Distance (Spatially Balanced Sampling Design)
 //'
 //' Selects spatially balanced samples through the use of the
-//' Product Within Distance design (PWD). The level of the spread can be
-//' choosen through the parameter \eqn{\beta}, which is regulated by the
-//' exponent of the distance matrix (D^1 -> \eqn{\beta = 1},
-//' D^10 -> \eqn{\beta = 10}). The higher \eqn{\beta} is, the more the sample
-//' is going to be spread. To have constant inclusion probabilities
-//' \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and \eqn{N} is
-//' population size, the distance matrix has to be standardized with function
-//' \code{\link{stprod}}.
+//' Product Within Distance design (PWD). To have constant inclusion
+//' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
+//' \eqn{N} is population size, the distance matrix has to be standardized with
+//' function \code{\link{stprod}}.
 //'
 //' @param dis A distance matrix NxN that specifies how far are all the pairs
 //' of units in the population.
 //' @param nsamp Sample size.
+//' @param bexp Parameter \eqn{\beta} for the algorithm. The higher
+//' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 //' @param nrepl Number of samples to draw (default = 1).
 //' @param niter Number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
@@ -29,40 +27,30 @@
 //' \url{https://doi.org/10.1002/bimj.201600194}
 //' @examples
 //' # Example 1
-//' # Draw 20 samples of dimension 15 without constant probabilities and with beta = 1
+//' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' nsamp <- 15  # sample size
-//' nrepl <- 20  # number of samples to draw
-//' niter <- 10  # number of iterations in the algorithm
-//' samples <- pwd(dis, niter, nsamp, nrepl)  # drawn samples
+//' s <- pwd(dis = dis, nsamp = 15)  # drawn sample
 //' \donttest{
 //' # Example 2
-//' # Draw 20 samples of dimension 15 with constant probabilities equal to nsamp/N
-//' # with N = population size
+//' # Draw 1 sample of dimension 15 with constant inclusion probabilities
+//' # equal to nsamp/N, with N = population size
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' nsamp <- 15  # sample size
-//' nrepl <- 20  # number of samples to draw
-//' niter <- 10  # number of iterations in the algorithm
-//' vec <- rep(0, nrow(dis)) # vector of constraints
-//' stand_dist <- stprod(dis, vec ,1e-15 ,1000) # standardized matrix
-//' samples <- pwd(stand_dist, niter, nsamp, nrepl)  # drawn samples
+//' con <- rep(0, nrow(dis)) # vector of constraints
+//' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+//' s <- pwd(dis = stand_dist, nsamp = 15)  # drawn sample
 //'
 //' # Example 3
-//' # Draw 20 samples of dimension 15 with constant probabilities equal to nsamp/N and beta = 10
-//' # with N = population size
+//' # Draw 2 samples of dimension 15 with constant inclusion probabilities
+//' # equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' dis <- dis^10 # setting beta = 10
-//' nsamp <- 15  # sample size
-//' nrepl <- 20  # number of samples to draw
-//' niter <- 10  # number of iterations in the algorithm
-//' vec <- rep(0, nrow(dis)) # vector of constraints
-//' stand_dist <- stprod(dis, vec, 1e-15, 1000) # standardized matrix
-//' samples <- pwd(stand_dist, niter, nsamp, nrepl)  # drawn samples
+//' con <- rep(0, nrow(dis)) # vector of constraints
+//' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+//' s <- pwd(dis = stand_dist, nsamp = 15, bexp = 20, nrepl = 2)  # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]
 
-arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
+arma::mat pwd (arma::mat dis, int nsamp, double bexp = 10, int nrepl = 1, int niter = 10)
 {
   int npo = dis.n_rows;
   if(dis.is_square() == FALSE)
@@ -101,6 +89,7 @@ arma::mat pwd (arma::mat dis, int nsamp, int nrepl = 1, int niter = 10)
   totc = 0.0;
   totb = 0.0;
   int w, k, z, iter;
+  dis = arma::pow(dis, bexp);
   dis.diag().fill(1);
   dis = log(dis);
   arma::vec cod = arma::linspace(1, npo, npo);
