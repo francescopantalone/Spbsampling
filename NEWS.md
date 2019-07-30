@@ -1,3 +1,18 @@
+# Spbsampling 1.3 (not yet on CRAN)
+
+## New features
+
+* In the functions `pwd()` and `hpwd()` a new parameter called `bexp` has been introduced, which regulates the amount of spread of the samples. Default value set to `10`.
+* In the function`swd()` the parameter `bexp` is now set to double and with default equal to `10`.
+
+## Minor improvements
+
+* Minor improvements of guides:
+  * some updates to the examples;
+  * removed some non-ASCII characters;
+  * inserted links to reference websites.
+
+
 # Spbsampling 1.2.0
 
 * Changed output of functions `pwd()`, `swd()` and `hpwd()` from a matrix of dimension `(nsamp * nrepl) * 2` to a matrix of dimension `nrepl * nsamp`.
@@ -10,11 +25,11 @@
 ## New features
 
 * Added a new function `sbi()` for compute the spatial index of a sample, implemented in C++ through the Armadillo library, using **Rcpp** and **RcppArmadillo**.
-* In the function `pwd()` and `swd()` the parameter `nrepl` is now set to default at `1`.
-* In the function `pwd()` and `swd()` the parameter `niter` is now set to default at `10`.
-* In the function `stprod()` and `stsum()` the parameter `differ` is now set to default at `1e-15`.
-* In the function `stprod()` and `stsum()` the parameter `niter` is now set to default at `1000`.
-* In the function `stprod()` and `stsum()` there is no print for each convergence step anymore. 
+* In the functions `pwd()` and `swd()` the parameter `nrepl` is now set to default at `1`.
+* In the functions `pwd()` and `swd()` the parameter `niter` is now set to default at `10`.
+* In the functions `stprod()` and `stsum()` the parameter `differ` is now set to default at `1e-15`.
+* In the functions `stprod()` and `stsum()` the parameter `niter` is now set to default at `1000`.
+* In the functions `stprod()` and `stsum()` there is no print for each convergence step anymore. 
 
 ## Improvements under the hood
 
