@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Spatial Balance Index — sbi" />
 
-<meta property="og:description" content="sbi computes the Spatial Balance Index (SBI), which is a measure of
-balance of a sample. The lower it is, the better the balance." />
+<meta property="og:description" content="Computes the Spatial Balance Index (SBI), which is a measure of
+spatial balance of a sample. The lower it is, the better the spread." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -66,7 +66,7 @@ balance of a sample. The lower it is, the better the balance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Spbsampling</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3</span>
       </span>
     </div>
 
@@ -79,10 +79,10 @@ balance of a sample. The lower it is, the better the balance." />
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">Guides</a>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -107,8 +107,8 @@ balance of a sample. The lower it is, the better the balance." />
 
     <div class="ref-description">
     
-    <p><code>sbi</code> computes the Spatial Balance Index (SBI), which is a measure of
-balance of a sample. The lower it is, the better the balance.</p>
+    <p>Computes the Spatial Balance Index (SBI), which is a measure of
+spatial balance of a sample. The lower it is, the better the spread.</p>
     
     </div>
 
@@ -119,11 +119,13 @@ balance of a sample. The lower it is, the better the balance.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dis</th>
-      <td><p>A distance matrix NxN that specifies how far are all the pairs of units in the population.</p></td>
+      <td><p>A distance matrix NxN that specifies how far all the pairs
+of units in the population are.</p></td>
     </tr>
     <tr>
       <th>pi</th>
-      <td><p>A vector of first order inclusion probabilities of the units of the population.</p></td>
+      <td><p>A vector of first order inclusion probabilities of the units
+of the population.</p></td>
     </tr>
     <tr>
       <th>s</th>
@@ -133,7 +135,7 @@ balance of a sample. The lower it is, the better the balance.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Return the Spatial Balance Index.</p>
+    <p>Returns the Spatial Balance Index.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -146,8 +148,9 @@ Finally, the variance of \(v_{i}\) is the SBI.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Stevens DL, Olsen AR (2004). “Spatially Balanced Sampling of Natural Resources.”
-<em>Journal of the American Statistical Association</em>, <strong>99</strong>(465), 262–278.</p>
+    <p>Stevens DL, Olsen AR (2004). Spatially Balanced Sampling of Natural Resources.
+<em>Journal of the American Statistical Association</em>, <strong>99</strong>(465), 262-278.
+<a href='https://doi.org/10.1198/016214504000000250'>https://doi.org/10.1198/016214504000000250</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -155,16 +158,15 @@ Finally, the variance of \(v_{i}\) is the SBI.</p>
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fl'>200</span>), <span class='fl'>100</span>, <span class='fl'>2</span>)
 <span class='no'>dis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='no'>d</span>))
 <span class='no'>pi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>10</span> / <span class='fl'>100</span>, <span class='fl'>100</span>)
-<span class='no'>sample</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>,<span class='fl'>10</span>)
-<span class='fu'>sbi</span>(<span class='no'>dis</span>, <span class='no'>pi</span>, <span class='no'>sample</span>)
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>,<span class='fl'>10</span>)
+<span class='fu'>sbi</span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>pi</span> <span class='kw'>=</span> <span class='no'>pi</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='no'>s</span>)
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='no'>dis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>simul1</span>$<span class='no'>x</span>, <span class='no'>simul1</span>$<span class='no'>y</span>))) <span class='co'># distance matrix</span>
-<span class='no'>vec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of constraints</span>
-<span class='no'>stand_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stprod.html'>stprod</a></span>(<span class='no'>dis</span>, <span class='no'>vec</span>) <span class='co'># standardized matrix</span>
-<span class='no'>nsamp</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span> <span class='co'># sample size</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of constraints</span>
+<span class='no'>stand_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stprod.html'>stprod</a></span>(<span class='kw'>mat</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>vec</span> <span class='kw'>=</span> <span class='no'>con</span>) <span class='co'># standardized matrix</span>
 <span class='no'>pi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>100</span> / <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of probabilities inclusion</span>
-<span class='no'>sample</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pwd.html'>pwd</a></span>(<span class='no'>stand_dist</span>, <span class='fl'>100</span>) <span class='co'># sample</span>
-<span class='fu'>sbi</span>(<span class='no'>dis</span>, <span class='no'>pi</span>, <span class='no'>sample</span>[, <span class='fl'>2</span>])
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pwd.html'>pwd</a></span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>stand_dist</span>, <span class='kw'>nsamp</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='co'># sample</span>
+<span class='fu'>sbi</span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>pi</span> <span class='kw'>=</span> <span class='no'>pi</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='no'>s</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

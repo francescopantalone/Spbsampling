@@ -32,13 +32,11 @@
 
 <meta property="og:title" content="Sum Within Distance (Spatially Balanced Sampling Design) — swd" />
 
-<meta property="og:description" content="This is an implemention of a spatially balanced design, with a probability
-function proportional to the within sample distance, using the sum of
-distance as an index of the within sample distance (Sum Within Distance,
-swd in short). To have a constant inclusion probabilities
-\(\pi_{i}=nsamp/N\), where \(nsamp\) is sample size and \(N\) is
-population size, standardize the distance matrix with function
-stsum." />
+<meta property="og:description" content="Selects spatially balanced samples through the use of the
+Sum Within Distance design (SWD). To have a constant inclusion
+probabilities \(\pi_{i}=nsamp/N\), where \(nsamp\) is sample size and
+\(N\) is population size, the distance matrix has to be standardized with
+function stsum." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -71,7 +69,7 @@ stsum." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Spbsampling</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3</span>
       </span>
     </div>
 
@@ -84,10 +82,10 @@ stsum." />
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">Guides</a>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -112,25 +110,23 @@ stsum." />
 
     <div class="ref-description">
     
-    <p>This is an implemention of a spatially balanced design, with a probability
-function proportional to the within sample distance, using the sum of
-distance as an index of the within sample distance (Sum Within Distance,
-<code>swd</code> in short). To have a constant inclusion probabilities
-\(\pi_{i}=nsamp/N\), where \(nsamp\) is sample size and \(N\) is
-population size, standardize the distance matrix with function
-<code><a href='stsum.html'>stsum</a></code>.</p>
+    <p>Selects spatially balanced samples through the use of the
+Sum Within Distance design (SWD). To have a constant inclusion
+probabilities \(\pi_{i}=nsamp/N\), where \(nsamp\) is sample size and
+\(N\) is population size, the distance matrix has to be standardized with
+function <code><a href='stsum.html'>stsum</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>swd</span>(<span class='no'>dis</span>, <span class='no'>nsamp</span>, <span class='no'>bexp</span>, <span class='kw'>nrepl</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>10L</span>)</pre>
+    <pre class="usage"><span class='fu'>swd</span>(<span class='no'>dis</span>, <span class='no'>nsamp</span>, <span class='kw'>bexp</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>nrepl</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>10L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dis</th>
-      <td><p>A distance matrix NxN that specifies how far are all the pairs
-of units in the population.</p></td>
+      <td><p>A distance matrix NxN that specifies how far all the pairs
+of units in the population are.</p></td>
     </tr>
     <tr>
       <th>nsamp</th>
@@ -154,39 +150,40 @@ better but require more time. Usually 10 is very efficient (default = 10).</p></
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Return a matrix <code>nrepl</code> x <code>nsamp</code>, which contains the
+    <p>Returns a matrix <code>nrepl</code> x <code>nsamp</code>, which contains the
 <code>nrepl</code> selected samples, each of them stored in a row. In particular,
 the i-th row contains all labels of units selected in the i-th sample.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Benedetti R, Piersimoni F (2017). “A spatially balanced design with
-probability function proportional to the within sample distance.”
-<em>Biometrical Journal</em>, <strong>59</strong>(5), 1067–1084.</p>
+    <p>Benedetti R, Piersimoni F (2017). A spatially balanced design with
+probability function proportional to the within sample distance.
+<em>Biometrical Journal</em>, <strong>59</strong>(5), 1067-1084.
+<a href='https://doi.org/10.1002/bimj.201600194'>https://doi.org/10.1002/bimj.201600194</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Example 1</span>
-<span class='co'># Draw 20 samples of dimension 15 without constant probabilities and beta = 1</span>
+<span class='co'># Draw 1 sample of dimension 15 without constant inclusion probabilities</span>
 <span class='no'>dis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>income_emilia</span>$<span class='no'>x_coord</span>, <span class='no'>income_emilia</span>$<span class='no'>y_coord</span>))) <span class='co'># distance matrix</span>
-<span class='no'>nsamp</span> <span class='kw'>&lt;-</span> <span class='fl'>15</span>  <span class='co'># sample size</span>
-<span class='no'>nrepl</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>  <span class='co'># number of samples to draw</span>
-<span class='no'>niter</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>  <span class='co'># number of iterations in the algorithm</span>
-<span class='no'>bexp</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>   <span class='co'># parameter beta</span>
-<span class='no'>samples</span> <span class='kw'>&lt;-</span> <span class='fu'>swd</span>(<span class='no'>dis</span>, <span class='no'>niter</span>, <span class='no'>nsamp</span>, <span class='no'>nrepl</span>, <span class='no'>bexp</span>)  <span class='co'># drawn samples</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>swd</span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>nsamp</span> <span class='kw'>=</span> <span class='fl'>15</span>)  <span class='co'># drawn sample</span>
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
 <span class='co'># Example 2</span>
-<span class='co'># Draw 20 samples of dimension 15 with constant probabilities equal to nsamp/N and beta = 10</span>
-<span class='co'># with N = population size</span>
+<span class='co'># Draw 1 sample of dimension 15 with constant inclusion probabilities</span>
+<span class='co'># equal to nsamp/N, with N = population size</span>
 <span class='no'>dis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>income_emilia</span>$<span class='no'>x_coord</span>,<span class='no'>income_emilia</span>$<span class='no'>y_coord</span>))) <span class='co'># distance matrix</span>
-<span class='no'>nsamp</span> <span class='kw'>&lt;-</span> <span class='fl'>15</span>  <span class='co'># sample size</span>
-<span class='no'>nrepl</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>  <span class='co'># numbers of samples to drawn</span>
-<span class='no'>niter</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>  <span class='co'># numbers of iterations in the algorithm</span>
-<span class='no'>bexp</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>   <span class='co'># parameter beta</span>
-<span class='no'>vec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of constraints</span>
-<span class='no'>stand_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stsum.html'>stsum</a></span>(<span class='no'>dis</span>, <span class='no'>vec</span>, <span class='fl'>1e-15</span>, <span class='fl'>1000</span>) <span class='co'># standardized matrix</span>
-<span class='no'>samples</span> <span class='kw'>&lt;-</span> <span class='fu'>swd</span>(<span class='no'>stand_dist</span>, <span class='no'>niter</span>, <span class='no'>nsamp</span>, <span class='no'>nrepl</span>, <span class='no'>bexp</span>)  <span class='co'># drawn samples</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of constraints</span>
+<span class='no'>stand_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stsum.html'>stsum</a></span>(<span class='kw'>mat</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>con</span> <span class='kw'>=</span> <span class='no'>vec</span>) <span class='co'># standardized matrix</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>swd</span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>stand_dist</span>, <span class='kw'>nsamp</span> <span class='kw'>=</span> <span class='fl'>15</span>)  <span class='co'># drawn sample</span>
+
+<span class='co'># Example 3</span>
+<span class='co'># Draw 2 samples of dimension 15 with constant inclusion probabilities</span>
+<span class='co'># equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20</span>
+<span class='no'>dis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>as.matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>income_emilia</span>$<span class='no'>x_coord</span>,<span class='no'>income_emilia</span>$<span class='no'>y_coord</span>))) <span class='co'># distance matrix</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dis</span>)) <span class='co'># vector of constraints</span>
+<span class='no'>stand_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stsum.html'>stsum</a></span>(<span class='kw'>mat</span> <span class='kw'>=</span> <span class='no'>dis</span>, <span class='kw'>con</span> <span class='kw'>=</span> <span class='no'>vec</span>) <span class='co'># standardized matrix</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>swd</span>(<span class='kw'>dis</span> <span class='kw'>=</span> <span class='no'>stand_dist</span>, <span class='kw'>nsamp</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>bexp</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrepl</span> <span class='kw'>=</span> <span class='fl'>2</span>)  <span class='co'># drawn samples</span>
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
