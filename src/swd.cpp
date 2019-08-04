@@ -69,10 +69,6 @@ arma::mat swd (arma::mat dis, int nsamp, double bexp = 10, int nrepl = 1, int ni
   {
     throw Rcpp::exception("Sample size negative or 0.");
   }
-  if(nrepl < 0)
-  {
-    throw Rcpp::exception("bexp has to be different from 0.");
-  }
   if(nrepl <= 0)
   {
     throw Rcpp::exception("nrepl has to be greater than 0.");
