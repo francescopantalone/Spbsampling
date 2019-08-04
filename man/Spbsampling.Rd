@@ -7,7 +7,7 @@
 \title{Spatially balanced sampling designs}
 \description{
 Selection of spatially balanced samples. In particular, the implemented
-sampling designs allow to select probability samples spread over the
+sampling designs allow to select probability samples well spread over the
 population of interest, in any dimension and using any distance function
 (e.g. Euclidean distance, Manhattan distance). The implementation has been
 done in \code{C++} through the use of \code{Rcpp} and \code{RcppArmadillo}.
