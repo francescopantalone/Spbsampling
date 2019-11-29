@@ -93,7 +93,7 @@ arma::mat swd (arma::mat dis, int nsamp, double bexp = 10, int nrepl = 1, int ni
   {
     iter = 0;
     rand = Rcpp::runif(npo);
-    urand = arma::sort_index(rand);
+    urand = arma::stable_sort_index(rand);
     codord = cod(urand);
     while(iter < niter)
     {
