@@ -61,9 +61,9 @@ arma::mat swd (arma::mat dis, int nsamp, double bexp = 10, int nrepl = 1, int ni
   {
     Rcpp::warning("The distance matrix is not symmetric.");
   }
-  if(nsamp > npo)
+  if(nsamp >= npo)
   {
-    throw Rcpp::exception("Sample size greater than population size.");
+    throw Rcpp::exception("Sample size equal or greater than population size.");
   }
   if(nsamp <= 0)
   {
