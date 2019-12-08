@@ -4,7 +4,7 @@
 \alias{swd}
 \title{Sum Within Distance (Spatially Balanced Sampling Design)}
 \usage{
-swd(dis, nsamp, bexp = 10, nrepl = 1L, niter = 10L)
+swd(dis, nsamp, beta = 10, nrepl = 1L, niter = 10L)
 }
 \arguments{
 \item{dis}{A distance matrix NxN that specifies how far all the pairs
@@ -12,7 +12,7 @@ of units in the population are.}
 
 \item{nsamp}{Sample size.}
 
-\item{bexp}{Parameter \eqn{\beta} for the algorithm. The higher
+\item{beta}{Parameter \eqn{\beta} for the algorithm. The higher
 \eqn{\beta} is, the more the sample is going to be spread.}
 
 \item{nrepl}{Number of samples to draw (default = 1).}
@@ -48,11 +48,11 @@ s <- swd(dis = stand_dist, nsamp = 15)  # drawn sample
 
 # Example 3
 # Draw 2 samples of dimension 15 with constant inclusion probabilities
-# equal to nsamp/N, with N = population size and an increased level of spread, i.e. bexp = 20
+# equal to nsamp/N, with N = population size and an increased level of spread, i.e. beta = 20
 dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
 stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
-s <- swd(dis = stand_dist, nsamp = 15, bexp = 20, nrepl = 2)  # drawn samples
+s <- swd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2)  # drawn samples
 }
 }
 \references{

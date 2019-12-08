@@ -4,7 +4,7 @@
 \alias{hpwd}
 \title{Heuristic Product Within Distance (Spatially Balanced Sampling Design)}
 \usage{
-hpwd(dis, nsamp, bexp = 10, nrepl = 1L)
+hpwd(dis, nsamp, beta = 10, nrepl = 1L)
 }
 \arguments{
 \item{dis}{A distance matrix NxN that specifies how far all the pairs
@@ -12,7 +12,7 @@ of units in the population are.}
 
 \item{nsamp}{Sample size.}
 
-\item{bexp}{Parameter \eqn{\beta} for the algorithm. The higher
+\item{beta}{Parameter \eqn{\beta} for the algorithm. The higher
 \eqn{\beta} is, the more the sample is going to be spread (default = 10).}
 
 \item{nrepl}{Number of samples to draw (default = 1).}
@@ -53,11 +53,11 @@ s <- hpwd(dis = stand_dist, nsamp = 15) # drawn sample
 
 # Example 3
 # Draw 2 samples of dimension 15 with constant inclusion probabilities
-# equal to nsamp/N, with N = population size, and an increased level of spread, bexp = 20
+# equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
-s <- hpwd(dis = stand_dist, nsamp = 15, bexp = 20, nrepl = 2) # drawn samples
+s <- hpwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2) # drawn samples
 }
 }
 \references{
