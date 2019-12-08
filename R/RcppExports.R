@@ -171,7 +171,7 @@ sbi <- function(dis, pi, s) {
 #' points.
 #'
 #' @param mat A distance matrix size NxN.
-#' @param vec A vector of row (column) constraints.
+#' @param con A vector of row (column) constraints.
 #' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 #' @param niter An integer with the maximum number of iterations (default = 1000).
 #' @return Returns a standardized distance matrix of size NxN.
@@ -185,16 +185,16 @@ sbi <- function(dis, pi, s) {
 #' d <- matrix(runif(200), 100, 2)
 #' dis <- as.matrix(dist(d))
 #' con <- rep(0, nrow(dis))
-#' stand_dist <- stprod(mat = dis, vec = con)
+#' stand_dist <- stprod(mat = dis, con = con)
 #' }
 #' \donttest{
 #' dis <- as.matrix(dist(cbind(simul1$x, simul1$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
-#' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+#' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 #' }
 #' @export
-stprod <- function(mat, vec, differ = 1e-15, niter = 1000L) {
-    .Call(`_Spbsampling_stprod`, mat, vec, differ, niter)
+stprod <- function(mat, con, differ = 1e-15, niter = 1000L) {
+    .Call(`_Spbsampling_stprod`, mat, con, differ, niter)
 }
 
 #' Standardize a symmetric matrix (distances) to fixed row (column) totals
@@ -212,7 +212,7 @@ stprod <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 #' points.
 #'
 #' @param  mat A distance matrix size NxN.
-#' @param  vec A vector of row (column) constraints.
+#' @param  con A vector of row (column) constraints.
 #' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 #' @param niter An integer with the maximum number of iterations (default = 1000).
 #' @return Returns a standardized distance matrix of size NxN.
@@ -224,10 +224,10 @@ stprod <- function(mat, vec, differ = 1e-15, niter = 1000L) {
 #' @examples
 #' dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
-#' stand_dist <- stsum(mat = dis, vec = con) # standardized matrix
+#' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
 #' @export
-stsum <- function(mat, vec, differ = 1e-15, niter = 1000L) {
-    .Call(`_Spbsampling_stsum`, mat, vec, differ, niter)
+stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
+    .Call(`_Spbsampling_stsum`, mat, con, differ, niter)
 }
 
 #' Sum Within Distance (Spatially Balanced Sampling Design)

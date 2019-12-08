@@ -4,12 +4,12 @@
 \alias{stsum}
 \title{Standardize a symmetric matrix (distances) to fixed row (column) totals}
 \usage{
-stsum(mat, vec, differ = 1e-15, niter = 1000L)
+stsum(mat, con, differ = 1e-15, niter = 1000L)
 }
 \arguments{
 \item{mat}{A distance matrix size NxN.}
 
-\item{vec}{A vector of row (column) constraints.}
+\item{con}{A vector of row (column) constraints.}
 
 \item{differ}{A scalar with the maximum accepted difference with the constraint (default = 1e-15).}
 
@@ -35,7 +35,7 @@ points.
 \examples{
 dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(mat = dis, vec = con) # standardized matrix
+stand_dist <- stsum(mat = dis, con = con) # standardized matrix
 }
 \references{
 Benedetti R, Piersimoni F (2017). A spatially balanced design with

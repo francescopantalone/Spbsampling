@@ -4,12 +4,12 @@
 \alias{stprod}
 \title{Standardize a symmetric matrix (distances) to fixed row (column) products}
 \usage{
-stprod(mat, vec, differ = 1e-15, niter = 1000L)
+stprod(mat, con, differ = 1e-15, niter = 1000L)
 }
 \arguments{
 \item{mat}{A distance matrix size NxN.}
 
-\item{vec}{A vector of row (column) constraints.}
+\item{con}{A vector of row (column) constraints.}
 
 \item{differ}{A scalar with the maximum accepted difference with the constraint (default = 1e-15).}
 
@@ -38,12 +38,12 @@ points.
 d <- matrix(runif(200), 100, 2)
 dis <- as.matrix(dist(d))
 con <- rep(0, nrow(dis))
-stand_dist <- stprod(mat = dis, vec = con)
+stand_dist <- stprod(mat = dis, con = con)
 }
 \donttest{
 dis <- as.matrix(dist(cbind(simul1$x, simul1$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
-stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 }
 }
 \references{

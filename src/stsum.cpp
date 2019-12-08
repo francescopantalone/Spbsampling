@@ -16,7 +16,7 @@
 //' points.
 //'
 //' @param  mat A distance matrix size NxN.
-//' @param  vec A vector of row (column) constraints.
+//' @param  con A vector of row (column) constraints.
 //' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 //' @param niter An integer with the maximum number of iterations (default = 1000).
 //' @return Returns a standardized distance matrix of size NxN.
@@ -28,11 +28,11 @@
 //' @examples
 //' dis <- as.matrix(dist(cbind(simul2$x, simul2$y))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
-//' stand_dist <- stsum(mat = dis, vec = con) # standardized matrix
+//' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
 //' @export
 // [[Rcpp::export]]
 
-arma::mat stsum(arma::mat mat, arma::vec vec, double differ = 1e-15, int niter = 1000)
+arma::mat stsum(arma::mat mat, arma::vec con, double differ = 1e-15, int niter = 1000)
 {
   if(mat.is_square() == FALSE)
   {
@@ -42,13 +42,13 @@ arma::mat stsum(arma::mat mat, arma::vec vec, double differ = 1e-15, int niter =
   {
     Rcpp::warning("The distance matrix is not symmetric.");
   }
-  if(vec.n_elem != mat.n_rows)
+  if(con.n_elem != mat.n_rows)
   {
-    throw Rcpp::exception("The dimension of vec has to be equal to the number of row/column of the distance matrix.");
+    throw Rcpp::exception("The dimension of con has to be equal to the number of row/column of the distance matrix.");
   }
-  if(all(vec) == FALSE)
+  if(all(con) == FALSE)
   {
-    throw Rcpp::exception("Vec cannot contain a zero.");
+    throw Rcpp::exception("con cannot contain a zero.");
   }
   if(differ < 0)
   {
@@ -68,11 +68,11 @@ arma::mat stsum(arma::mat mat, arma::vec vec, double differ = 1e-15, int niter =
     for(int i = 0; i < nsize; i++)
     {
       mat.row(i) /= rowsums(i);
-      mat.row(i) *= vec(i);
+      mat.row(i) *= con(i);
     }
     mat = (mat + mat.t()) / 2;
     mat.diag().fill(0);
-    dif = abs((sum(mat, 1) - vec) / vec).max();
+    dif = abs((sum(mat, 1) - con) / con).max();
     v++;
   }
   return mat;
