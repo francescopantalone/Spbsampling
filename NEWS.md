@@ -1,9 +1,16 @@
+# Spbsampling 1.3.1
+
+* In the functions `pwd()` and `swd()` replaced `arma::sort_index()` with `arma::stable_sort_index()`.
+* In the functions `pwd()`, `swd()` and `hpwd()` fixed the sample size check.
+* In the functions `pwd()`, `swd()` and `hpwd()` changed the name of the parameter `bexp` in `beta`.
+* In the functions `stprod()` and `stsum()` changed the name of the parameter `vec`in `con`.
+
 # Spbsampling 1.3.0
 
 ## New features
 
 * In the functions `pwd()` and `hpwd()` a new parameter called `bexp` has been introduced, which regulates the amount of spread of the samples. Default value set to `10`.
-* In the function`swd()` the parameter `bexp` is now set to double and with default equal to `10`.
+* In the function `swd()` the parameter `bexp` is now set to double and with default equal to `10`.
 
 ## Minor improvements
 
