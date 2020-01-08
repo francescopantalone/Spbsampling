@@ -44,7 +44,7 @@
 //' # equal to nsamp/N, with N = population size
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
-//' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+//' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 //' s <- hpwd(dis = stand_dist, nsamp = 15) # drawn sample
 //'
 //' # Example 3
@@ -52,7 +52,7 @@
 //' # equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
-//' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+//' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 //' s <- hpwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2) # drawn samples
 //' }
 //' @export
