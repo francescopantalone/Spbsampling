@@ -5,19 +5,19 @@
 //'
 //' Selects spatially balanced samples through the use of the
 //' Product Within Distance design (PWD). To have constant inclusion
-//' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
+//' probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size and
 //' \eqn{N} is population size, the distance matrix has to be standardized with
 //' function \code{\link{stprod}}.
 //'
 //' @param dis A distance matrix NxN that specifies how far all the pairs
 //' of units in the population are.
-//' @param nsamp Sample size.
+//' @param n Sample size.
 //' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 //' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 //' @param nrepl Number of samples to draw (default = 1).
 //' @param niter Number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
-//' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
@@ -29,28 +29,28 @@
 //' # Example 1
 //' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' s <- pwd(dis = dis, nsamp = 15)  # drawn sample
+//' s <- pwd(dis = dis, n = 15)  # drawn sample
 //' \donttest{
 //' # Example 2
 //' # Draw 1 sample of dimension 15 with constant inclusion probabilities
-//' # equal to nsamp/N, with N = population size
+//' # equal to n/N, with N = population size
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- pwd(dis = stand_dist, nsamp = 15)  # drawn sample
+//' s <- pwd(dis = stand_dist, n = 15)  # drawn sample
 //'
 //' # Example 3
 //' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-//' # equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
+//' # equal to n/N, with N = population size, and an increased level of spread, beta = 20
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- pwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2)  # drawn samples
+//' s <- pwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]
 
-arma::mat pwd (arma::mat dis, int nsamp, double beta = 10, int nrepl = 1, int niter = 10)
+arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter = 10)
 {
   int npo = dis.n_rows;
   if(dis.is_square() == FALSE)
@@ -61,11 +61,11 @@ arma::mat pwd (arma::mat dis, int nsamp, double beta = 10, int nrepl = 1, int ni
   {
     Rcpp::warning("The distance matrix is not symmetric.");
   }
-  if(nsamp >= npo)
+  if(n >= npo)
   {
     throw Rcpp::exception("Sample size equal or greater than population size.");
   }
-  if(nsamp <= 0)
+  if(n <= 0)
   {
     throw Rcpp::exception("Sample size negative or 0.");
   }
@@ -77,7 +77,7 @@ arma::mat pwd (arma::mat dis, int nsamp, double beta = 10, int nrepl = 1, int ni
   {
     throw Rcpp::exception("niter has to be greater than 0");
   }
-  arma::mat selez(nrepl, nsamp);
+  arma::mat selez(nrepl, n);
   arma::vec ord(npo);
   arma::vec sor(npo);
   arma::vec codord(npo);
@@ -105,15 +105,15 @@ arma::mat pwd (arma::mat dis, int nsamp, double beta = 10, int nrepl = 1, int ni
       gcod = Rcpp::runif(npo * 3);
       while(z <= npo)
       {
-        w = trunc(gcod(z - 1) * nsamp) + 1;
-        k = trunc(gcod(npo + z - 1) * (npo - nsamp)) + 1 + nsamp;
+        w = trunc(gcod(z - 1) * n) + 1;
+        k = trunc(gcod(npo + z - 1) * (npo - n)) + 1 + n;
         totc = 0;
-        for (int i = 0; i < nsamp; i++)
+        for (int i = 0; i < n; i++)
         {
           totc = totc + dis(codord(w - 1) - 1, codord(i) - 1);
         }
         totb = 0;
-        for (int i = 0; i < nsamp; i++)
+        for (int i = 0; i < n; i++)
         {
           totb = totb + dis(codord(k - 1) - 1, codord(i) - 1);
         }
@@ -128,7 +128,7 @@ arma::mat pwd (arma::mat dis, int nsamp, double beta = 10, int nrepl = 1, int ni
       }
       iter++;
     }
-    selez.row(cc - 1) = codord.subvec(0, nsamp - 1).t();
+    selez.row(cc - 1) = codord.subvec(0, n - 1).t();
   }
   return selez;
 }

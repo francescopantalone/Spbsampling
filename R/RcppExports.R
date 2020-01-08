@@ -5,7 +5,7 @@
 #'
 #' Selects spatially balanced samples through the use of
 #' Heuristic Product Within Distance design (HPWD). To have constant inclusion
-#' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size
+#' probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size
 #' and \eqn{N} is population size, the distance matrix has to be standardized
 #' with function \code{\link{stprod}}.
 #'
@@ -18,11 +18,11 @@
 #'
 #' @param dis A distance matrix NxN that specifies how far all the pairs
 #' of units in the population are.
-#' @param nsamp Sample size.
+#' @param n Sample size.
 #' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 #' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 #' @param nrepl Number of samples to draw (default = 1).
-#' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+#' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
 #' \code{nrepl} selected samples, each of them stored in a row. In particular,
 #' the i-th row contains all labels of units selected in the i-th sample.
 #' @references
@@ -37,46 +37,46 @@
 #' # Example 1
 #' # Draw 1 sample of dimension 10 without constant inclusion probabilities
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-#' s <- hpwd(dis = dis, nsamp = 10) # drawn sample
+#' s <- hpwd(dis = dis, n = 10) # drawn sample
 #' \donttest{
 #' # Example 2
 #' # Draw 1 sample of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size
+#' # equal to n/N, with N = population size
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- hpwd(dis = stand_dist, nsamp = 15) # drawn sample
+#' s <- hpwd(dis = stand_dist, n = 15) # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
+#' # equal to n/N, with N = population size, and an increased level of spread, beta = 20
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- hpwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2) # drawn samples
+#' s <- hpwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2) # drawn samples
 #' }
 #' @export
-hpwd <- function(dis, nsamp, beta = 10, nrepl = 1L) {
-    .Call(`_Spbsampling_hpwd`, dis, nsamp, beta, nrepl)
+hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
+    .Call(`_Spbsampling_hpwd`, dis, n, beta, nrepl)
 }
 
 #' Product Within Distance (Spatially Balanced Sampling Design)
 #'
 #' Selects spatially balanced samples through the use of the
 #' Product Within Distance design (PWD). To have constant inclusion
-#' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
+#' probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size and
 #' \eqn{N} is population size, the distance matrix has to be standardized with
 #' function \code{\link{stprod}}.
 #'
 #' @param dis A distance matrix NxN that specifies how far all the pairs
 #' of units in the population are.
-#' @param nsamp Sample size.
+#' @param n Sample size.
 #' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 #' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 #' @param nrepl Number of samples to draw (default = 1).
 #' @param niter Number of iterations for the algorithm. More iterations are
 #' better but require more time. Usually 10 is very efficient (default = 10).
-#' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+#' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
 #' \code{nrepl} selected samples, each of them stored in a row. In particular,
 #' the i-th row contains all labels of units selected in the i-th sample.
 #' @references
@@ -88,27 +88,27 @@ hpwd <- function(dis, nsamp, beta = 10, nrepl = 1L) {
 #' # Example 1
 #' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-#' s <- pwd(dis = dis, nsamp = 15)  # drawn sample
+#' s <- pwd(dis = dis, n = 15)  # drawn sample
 #' \donttest{
 #' # Example 2
 #' # Draw 1 sample of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size
+#' # equal to n/N, with N = population size
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist, nsamp = 15)  # drawn sample
+#' s <- pwd(dis = stand_dist, n = 15)  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
+#' # equal to n/N, with N = population size, and an increased level of spread, beta = 20
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- pwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
 #' }
 #' @export
-pwd <- function(dis, nsamp, beta = 10, nrepl = 1L, niter = 10L) {
-    .Call(`_Spbsampling_pwd`, dis, nsamp, beta, nrepl, niter)
+pwd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
+    .Call(`_Spbsampling_pwd`, dis, n, beta, nrepl, niter)
 }
 
 #' Spatial Balance Index
@@ -234,19 +234,19 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #'
 #' Selects spatially balanced samples through the use of the
 #' Sum Within Distance design (SWD). To have a constant inclusion
-#' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size and
+#' probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size and
 #' \eqn{N} is population size, the distance matrix has to be standardized with
 #' function \code{\link{stsum}}.
 #'
 #' @param dis A distance matrix NxN that specifies how far all the pairs
 #' of units in the population are.
-#' @param nsamp Sample size.
+#' @param n Sample size.
 #' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 #' \eqn{\beta} is, the more the sample is going to be spread.
 #' @param nrepl Number of samples to draw (default = 1).
 #' @param niter Number of iterations for the algorithm. More iterations are
 #' better but require more time. Usually 10 is very efficient (default = 10).
-#' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+#' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
 #' \code{nrepl} selected samples, each of them stored in a row. In particular,
 #' the i-th row contains all labels of units selected in the i-th sample.
 #' @references
@@ -258,26 +258,26 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' # Example 1
 #' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord, income_emilia$y_coord))) # distance matrix
-#' s <- swd(dis = dis, nsamp = 15)  # drawn sample
+#' s <- swd(dis = dis, n = 15)  # drawn sample
 #' \donttest{
 #' # Example 2
 #' # Draw 1 sample of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size
+#' # equal to n/N, with N = population size
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
-#' s <- swd(dis = stand_dist, nsamp = 15)  # drawn sample
+#' s <- swd(dis = stand_dist, n = 15)  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-#' # equal to nsamp/N, with N = population size and an increased level of spread, i.e. beta = 20
+#' # equal to n/N, with N = population size and an increased level of spread, i.e. beta = 20
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
-#' s <- swd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- swd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
 #' }
 #' @export
-swd <- function(dis, nsamp, beta = 10, nrepl = 1L, niter = 10L) {
-    .Call(`_Spbsampling_swd`, dis, nsamp, beta, nrepl, niter)
+swd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
+    .Call(`_Spbsampling_swd`, dis, n, beta, nrepl, niter)
 }
 

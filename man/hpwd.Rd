@@ -4,13 +4,13 @@
 \alias{hpwd}
 \title{Heuristic Product Within Distance (Spatially Balanced Sampling Design)}
 \usage{
-hpwd(dis, nsamp, beta = 10, nrepl = 1L)
+hpwd(dis, n, beta = 10, nrepl = 1L)
 }
 \arguments{
 \item{dis}{A distance matrix NxN that specifies how far all the pairs
 of units in the population are.}
 
-\item{nsamp}{Sample size.}
+\item{n}{Sample size.}
 
 \item{beta}{Parameter \eqn{\beta} for the algorithm. The higher
 \eqn{\beta} is, the more the sample is going to be spread (default = 10).}
@@ -18,14 +18,14 @@ of units in the population are.}
 \item{nrepl}{Number of samples to draw (default = 1).}
 }
 \value{
-Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+Returns a matrix \code{nrepl} x \code{n}, which contains the
 \code{nrepl} selected samples, each of them stored in a row. In particular,
 the i-th row contains all labels of units selected in the i-th sample.
 }
 \description{
 Selects spatially balanced samples through the use of
 Heuristic Product Within Distance design (HPWD). To have constant inclusion
-probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size
+probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size
 and \eqn{N} is population size, the distance matrix has to be standardized
 with function \code{\link{stprod}}.
 }
@@ -41,23 +41,23 @@ units that were already selected in the previous steps.
 # Example 1
 # Draw 1 sample of dimension 10 without constant inclusion probabilities
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-s <- hpwd(dis = dis, nsamp = 10) # drawn sample
+s <- hpwd(dis = dis, n = 10) # drawn sample
 \donttest{
 # Example 2
 # Draw 1 sample of dimension 15 with constant inclusion probabilities
-# equal to nsamp/N, with N = population size
+# equal to n/N, with N = population size
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- hpwd(dis = stand_dist, nsamp = 15) # drawn sample
+s <- hpwd(dis = stand_dist, n = 15) # drawn sample
 
 # Example 3
 # Draw 2 samples of dimension 15 with constant inclusion probabilities
-# equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
+# equal to n/N, with N = population size, and an increased level of spread, beta = 20
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- hpwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2) # drawn samples
+s <- hpwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2) # drawn samples
 }
 }
 \references{

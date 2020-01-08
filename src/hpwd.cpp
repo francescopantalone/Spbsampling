@@ -5,7 +5,7 @@
 //'
 //' Selects spatially balanced samples through the use of
 //' Heuristic Product Within Distance design (HPWD). To have constant inclusion
-//' probabilities \eqn{\pi_{i}=nsamp/N}, where \eqn{nsamp} is sample size
+//' probabilities \eqn{\pi_{i}=n/N}, where \eqn{n} is sample size
 //' and \eqn{N} is population size, the distance matrix has to be standardized
 //' with function \code{\link{stprod}}.
 //'
@@ -18,11 +18,11 @@
 //'
 //' @param dis A distance matrix NxN that specifies how far all the pairs
 //' of units in the population are.
-//' @param nsamp Sample size.
+//' @param n Sample size.
 //' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 //' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 //' @param nrepl Number of samples to draw (default = 1).
-//' @return Returns a matrix \code{nrepl} x \code{nsamp}, which contains the
+//' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
 //' @references
@@ -37,28 +37,28 @@
 //' # Example 1
 //' # Draw 1 sample of dimension 10 without constant inclusion probabilities
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' s <- hpwd(dis = dis, nsamp = 10) # drawn sample
+//' s <- hpwd(dis = dis, n = 10) # drawn sample
 //' \donttest{
 //' # Example 2
 //' # Draw 1 sample of dimension 15 with constant inclusion probabilities
-//' # equal to nsamp/N, with N = population size
+//' # equal to n/N, with N = population size
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- hpwd(dis = stand_dist, nsamp = 15) # drawn sample
+//' s <- hpwd(dis = stand_dist, n = 15) # drawn sample
 //'
 //' # Example 3
 //' # Draw 2 samples of dimension 15 with constant inclusion probabilities
-//' # equal to nsamp/N, with N = population size, and an increased level of spread, beta = 20
+//' # equal to n/N, with N = population size, and an increased level of spread, beta = 20
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- hpwd(dis = stand_dist, nsamp = 15, beta = 20, nrepl = 2) # drawn samples
+//' s <- hpwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2) # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]
 
-arma::mat hpwd(arma::mat dis, int nsamp, double beta = 10, int nrepl=1)
+arma::mat hpwd(arma::mat dis, int n, double beta = 10, int nrepl=1)
 {
   int npop = dis.n_rows;
   if(dis.is_square() == FALSE)
@@ -69,11 +69,11 @@ arma::mat hpwd(arma::mat dis, int nsamp, double beta = 10, int nrepl=1)
   {
     Rcpp::warning("The distance matrix is not symmetric.");
   }
-  if(nsamp >= npop)
+  if(n >= npop)
   {
     throw Rcpp::exception("Sample size equal or greater than population size.");
   }
-  if(nsamp <= 0)
+  if(n <= 0)
   {
     throw Rcpp::exception("Sample size negative or 0.");
   }
@@ -81,7 +81,7 @@ arma::mat hpwd(arma::mat dis, int nsamp, double beta = 10, int nrepl=1)
   {
     throw Rcpp::exception("nrepl has to be greater than 0.");
   }
-  arma::mat selez(nrepl, nsamp);
+  arma::mat selez(nrepl, n);
   arma::vec r(1);
   arma::vec c(npop);
   arma::vec psel(npop);
@@ -91,7 +91,7 @@ arma::mat hpwd(arma::mat dis, int nsamp, double beta = 10, int nrepl=1)
   for(int cc = 1; cc <= nrepl; cc++)
   {
     psel.fill(1.0 / npop);
-    for(int j = 1; j <= nsamp; j++)
+    for(int j = 1; j <= n; j++)
     {
       r = Rcpp::runif(1);
       c.fill(0);

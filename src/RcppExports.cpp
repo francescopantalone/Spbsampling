@@ -7,31 +7,31 @@
 using namespace Rcpp;
 
 // hpwd
-arma::mat hpwd(arma::mat dis, int nsamp, double beta, int nrepl);
-RcppExport SEXP _Spbsampling_hpwd(SEXP disSEXP, SEXP nsampSEXP, SEXP betaSEXP, SEXP nreplSEXP) {
+arma::mat hpwd(arma::mat dis, int n, double beta, int nrepl);
+RcppExport SEXP _Spbsampling_hpwd(SEXP disSEXP, SEXP nSEXP, SEXP betaSEXP, SEXP nreplSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
-    Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
     Rcpp::traits::input_parameter< int >::type nrepl(nreplSEXP);
-    rcpp_result_gen = Rcpp::wrap(hpwd(dis, nsamp, beta, nrepl));
+    rcpp_result_gen = Rcpp::wrap(hpwd(dis, n, beta, nrepl));
     return rcpp_result_gen;
 END_RCPP
 }
 // pwd
-arma::mat pwd(arma::mat dis, int nsamp, double beta, int nrepl, int niter);
-RcppExport SEXP _Spbsampling_pwd(SEXP disSEXP, SEXP nsampSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
+arma::mat pwd(arma::mat dis, int n, double beta, int nrepl, int niter);
+RcppExport SEXP _Spbsampling_pwd(SEXP disSEXP, SEXP nSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
-    Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
     Rcpp::traits::input_parameter< int >::type nrepl(nreplSEXP);
     Rcpp::traits::input_parameter< int >::type niter(niterSEXP);
-    rcpp_result_gen = Rcpp::wrap(pwd(dis, nsamp, beta, nrepl, niter));
+    rcpp_result_gen = Rcpp::wrap(pwd(dis, n, beta, nrepl, niter));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -77,17 +77,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // swd
-arma::mat swd(arma::mat dis, int nsamp, double beta, int nrepl, int niter);
-RcppExport SEXP _Spbsampling_swd(SEXP disSEXP, SEXP nsampSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
+arma::mat swd(arma::mat dis, int n, double beta, int nrepl, int niter);
+RcppExport SEXP _Spbsampling_swd(SEXP disSEXP, SEXP nSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type dis(disSEXP);
-    Rcpp::traits::input_parameter< int >::type nsamp(nsampSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
     Rcpp::traits::input_parameter< int >::type nrepl(nreplSEXP);
     Rcpp::traits::input_parameter< int >::type niter(niterSEXP);
-    rcpp_result_gen = Rcpp::wrap(swd(dis, nsamp, beta, nrepl, niter));
+    rcpp_result_gen = Rcpp::wrap(swd(dis, n, beta, nrepl, niter));
     return rcpp_result_gen;
 END_RCPP
 }
