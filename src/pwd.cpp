@@ -84,6 +84,7 @@ arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter 
   arma::vec gcod(npo * 3);
   arma::vec rand(npo);
   arma::uvec urand(npo);
+  arma::vec q(nrepl);
   double ch,totc,totb;
   ch = 0.0;
   totc = 0.0;
@@ -93,16 +94,19 @@ arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter 
   dis.diag().fill(1);
   dis = log(dis);
   arma::vec cod = arma::linspace(1, npo, npo);
+  bool acc = true;
   for(int cc = 1; cc <= nrepl; cc++)
   {
     iter = 0;
+    acc = true;
     rand = Rcpp::runif(npo);
     urand = arma::stable_sort_index(rand);
     codord = cod(urand);
-    while(iter < niter)
+    while(iter < niter && acc == true)
     {
       z = 1;
       gcod = Rcpp::runif(npo * 3);
+      acc = false;
       while(z <= npo)
       {
         w = trunc(gcod(z - 1) * n) + 1;
@@ -123,6 +127,7 @@ arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter 
           ch = codord(w - 1);
           codord(w - 1) = codord(k - 1);
           codord(k - 1) = ch;
+          acc = true;
         }
         z++;
       }
