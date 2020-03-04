@@ -1,9 +1,25 @@
+# Spbsampling 1.3.2
+
+## Usage
+
+* In the functions `pwd()`, `swd()` and `hpwd()` changed the name of the parameter `nsamp` in `n`.
+
+## Under the hood
+
+* In the functions `pwd()` and `swd()` introduced stopping criterion.
+
 # Spbsampling 1.3.1
+
+## Usage
+
+* In the functions `pwd()`, `swd()` and `hpwd()` changed the name of the parameter `bexp` in `beta`.
+* In the functions `stprod()` and `stsum()` changed the name of the parameter `vec`in `con`.
+
+## Under the hood
 
 * In the functions `pwd()` and `swd()` replaced `arma::sort_index()` with `arma::stable_sort_index()`.
 * In the functions `pwd()`, `swd()` and `hpwd()` fixed the sample size check.
-* In the functions `pwd()`, `swd()` and `hpwd()` changed the name of the parameter `bexp` in `beta`.
-* In the functions `stprod()` and `stsum()` changed the name of the parameter `vec`in `con`.
+
 
 # Spbsampling 1.3.0
 
