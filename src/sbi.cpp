@@ -34,9 +34,9 @@
 //' \donttest{
 //' dis <- as.matrix(dist(cbind(simul1$x, simul1$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
-//' stand_dist <- stprod(mat = dis, vec = con) # standardized matrix
+//' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 //' pi <- rep(100 / nrow(dis), nrow(dis)) # vector of probabilities inclusion
-//' s <- pwd(dis = stand_dist, nsamp = 100) # sample
+//' s <- pwd(dis = stand_dist, n = 100) # sample
 //' sbi(dis = dis, pi = pi, s = s)
 //' }
 //' @importFrom stats var
