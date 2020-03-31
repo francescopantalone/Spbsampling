@@ -1,3 +1,7 @@
+# Spbsampling 1.3.3
+
+* Fixed typos in some examples.
+
 # Spbsampling 1.3.2
 
 ## Usage

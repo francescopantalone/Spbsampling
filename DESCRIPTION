@@ -1,6 +1,6 @@
 Package: Spbsampling
 Title: Spatially Balanced Sampling
-Version: 1.3.2
+Version: 1.3.3
 Authors@R: c(
     person("Francesco", "Pantalone", email = "pantalone.fra@gmail.com", role = c("aut","cre")),
     person("Roberto", "Benedetti", role = "aut"),
