@@ -43,7 +43,7 @@ s <- swd(dis = dis, n = 15)  # drawn sample
 # equal to n/N, with N = population size
 dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+stand_dist <- stsum(mat = dis, con = con) # standardized matrix
 s <- swd(dis = stand_dist, n = 15)  # drawn sample
 
 # Example 3
@@ -51,7 +51,7 @@ s <- swd(dis = stand_dist, n = 15)  # drawn sample
 # equal to n/N, with N = population size and an increased level of spread, i.e. beta = 20
 dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
-stand_dist <- stsum(mat = dis, con = vec) # standardized matrix
+stand_dist <- stsum(mat = dis, con = con) # standardized matrix
 s <- swd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
 }
 }
