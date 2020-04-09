@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulated Population 2. — simul2 • Spbsampling</title>
+<title>A brief illustration of PWD spatially balanced sampling design. • Spbsampling</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,15 +39,7 @@
 
 
 
-<meta property="og:title" content="Simulated Population 2. — simul2" />
-
-<meta property="og:description" content="The dataset contains a simulated georeferenced population of dimension
-\(N=1000\). The coordinates are generated in the range \([0,1]\) as a
-simulated realization of a particular random point pattern: the Neyman-Scott
-process with Cauchy cluster kernel. The nine values for each unit are
-generated according to the outcome of a Gaussian stochastic process, with an
-intensity dependence parameter \(\rho=0.01\) (that means medium dependence)
-and with a spatial trend \(x_{1}+x_{2}+\epsilon\)." />
+<meta property="og:title" content="A brief illustration of PWD spatially balanced sampling design." />
 
 <meta property="og:image" content="https://francescopantalone.github.io/Spbsampling/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -68,7 +60,7 @@ and with a spatial trend \(x_{1}+x_{2}+\epsilon\)." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-tutorial">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -117,61 +109,15 @@ and with a spatial trend \(x_{1}+x_{2}+\epsilon\)." />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="col-md-12">
     <div class="page-header">
-    <h1>Simulated Population 2.</h1>
-    
-    <div class="hidden name"><code>simul2.Rd</code></div>
+      <h1>A brief illustration of PWD spatially balanced sampling design.</h1>
     </div>
+</div>
 
-    <div class="ref-description">
-    
-    <p>The dataset contains a simulated georeferenced population of dimension
-\(N=1000\). The coordinates are generated in the range \([0,1]\) as a
-simulated realization of a particular random point pattern: the Neyman-Scott
-process with Cauchy cluster kernel. The nine values for each unit are
-generated according to the outcome of a Gaussian stochastic process, with an
-intensity dependence parameter \(\rho=0.01\) (that means medium dependence)
-and with a spatial trend \(x_{1}+x_{2}+\epsilon\).</p>
-    
-    </div>
-
-    <pre class="usage"><span class='no'>simul2</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with  1000 rows and 11 variables:</p><dl class='dl-horizontal'>
-  <dt>x</dt><dd><p>coordinate x</p></dd>
-  <dt>y</dt><dd><p>coordinate y</p></dd>
-  <dt>z21</dt><dd><p>first value of the unit</p></dd>
-  <dt>z22</dt><dd><p>second value of the unit</p></dd>
-  <dt>z23</dt><dd><p>third value of the unit</p></dd>
-  <dt>z24</dt><dd><p>fourth value of the unit</p></dd>
-  <dt>z25</dt><dd><p>fifth value of the unit</p></dd>
-  <dt>z26</dt><dd><p>sixth value of the unit</p></dd>
-  <dt>z27</dt><dd><p>seventh value of the unit</p></dd>
-  <dt>z28</dt><dd><p>eighth value of the unit</p></dd>
-  <dt>z29</dt><dd><p>ninth value of the unit</p></dd>
-         
-</dl>
-    
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>Benedetti R, Piersimoni F (2017). A spatially balanced design with
-probability function proportional to the within sample distance.
-<em>Biometrical Journal</em>, <strong>59</strong>(5), 1067-1084.</p>
-    
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-          </ul>
-
+<div class="row">
+  <div id="tutorial"></div>
+    <iframe width="100%" height="600" src="https://francescopantalone.shinyapps.io/spbsampling_shiny_app/" frameborder="0"></iframe>
   </div>
 </div>
 
