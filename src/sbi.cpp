@@ -36,7 +36,7 @@
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 //' pi <- rep(100 / nrow(dis), nrow(dis)) # vector of probabilities inclusion
-//' s <- pwd(dis = stand_dist, n = 100) # sample
+//' s <- pwd(dis = stand_dist$mat, n = 100) # sample
 //' sbi(dis = dis, pi = pi, s = s)
 //' }
 //' @importFrom stats var

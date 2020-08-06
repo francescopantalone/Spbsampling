@@ -16,7 +16,12 @@ stsum(mat, con, differ = 1e-15, niter = 1000L)
 \item{niter}{An integer with the maximum number of iterations (default = 1000).}
 }
 \value{
-Returns a standardized distance matrix of size NxN.
+Returns a list with the following components:
+\itemize{
+\item \code{mat}, the standardized distance matrix of size NxN.
+\item \code{iterations}, number of iterations run by the algorithm.
+\item \code{conv}, convergence reached by the algorithm.
+}
 }
 \description{
 Standardizes a distance matrix to fixed rows and columns

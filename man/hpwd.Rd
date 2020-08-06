@@ -49,7 +49,7 @@ s <- hpwd(dis = dis, n = 10) # drawn sample
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(1, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- hpwd(dis = stand_dist, n = 15) # drawn sample
+s <- hpwd(dis = stand_dist$mat, n = 15) # drawn sample
 
 # Example 3
 # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -57,7 +57,7 @@ s <- hpwd(dis = stand_dist, n = 15) # drawn sample
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- hpwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2) # drawn samples
+s <- hpwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2) # drawn samples
 }
 }
 \references{

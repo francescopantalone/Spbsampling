@@ -49,7 +49,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // stprod
-arma::mat stprod(arma::mat mat, arma::vec con, double differ, int niter);
+Rcpp::List stprod(arma::mat mat, arma::vec con, double differ, int niter);
 RcppExport SEXP _Spbsampling_stprod(SEXP matSEXP, SEXP conSEXP, SEXP differSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -63,7 +63,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // stsum
-arma::mat stsum(arma::mat mat, arma::vec con, double differ, int niter);
+Rcpp::List stsum(arma::mat mat, arma::vec con, double differ, int niter);
 RcppExport SEXP _Spbsampling_stsum(SEXP matSEXP, SEXP conSEXP, SEXP differSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

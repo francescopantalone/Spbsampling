@@ -37,7 +37,7 @@
 //' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
 //' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-//' s <- swd(dis = stand_dist, n = 15)  # drawn sample
+//' s <- swd(dis = stand_dist$mat, n = 15)  # drawn sample
 //'
 //' # Example 3
 //' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -45,7 +45,7 @@
 //' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 //' con <- rep(1, nrow(dis)) # vector of constraints
 //' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-//' s <- swd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
+//' s <- swd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]

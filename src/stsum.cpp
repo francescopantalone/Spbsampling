@@ -19,7 +19,12 @@
 //' @param  con A vector of row (column) constraints.
 //' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 //' @param niter An integer with the maximum number of iterations (default = 1000).
-//' @return Returns a standardized distance matrix of size NxN.
+//' @return Returns a list with the following components:
+//' \itemize{
+//' \item \code{mat}, the standardized distance matrix of size NxN.
+//' \item \code{iterations}, number of iterations run by the algorithm.
+//' \item \code{conv}, convergence reached by the algorithm.
+//' }
 //' @references
 //' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 //' probability function proportional to the within sample distance.
@@ -32,7 +37,7 @@
 //' @export
 // [[Rcpp::export]]
 
-arma::mat stsum(arma::mat mat, arma::vec con, double differ = 1e-15, int niter = 1000)
+Rcpp::List stsum(arma::mat mat, arma::vec con, double differ = 1e-15, int niter = 1000)
 {
   if(mat.is_square() == FALSE)
   {
@@ -75,5 +80,5 @@ arma::mat stsum(arma::mat mat, arma::vec con, double differ = 1e-15, int niter =
     dif = abs((sum(mat, 1) - con) / con).max();
     v++;
   }
-  return mat;
+  return Rcpp::List::create(Rcpp::Named("mat") = mat, Rcpp::Named("iterations") = v, Rcpp::Named("conv") = dif);
 }

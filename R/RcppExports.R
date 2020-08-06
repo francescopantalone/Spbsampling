@@ -45,7 +45,7 @@
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- hpwd(dis = stand_dist, n = 15) # drawn sample
+#' s <- hpwd(dis = stand_dist$mat, n = 15) # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -53,7 +53,7 @@
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- hpwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2) # drawn samples
+#' s <- hpwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2) # drawn samples
 #' }
 #' @export
 hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
@@ -96,7 +96,7 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist, n = 15)  # drawn sample
+#' s <- pwd(dis = stand_dist$mat, n = 15)  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -104,7 +104,7 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
 #' }
 #' @export
 pwd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
@@ -146,7 +146,7 @@ pwd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 #' pi <- rep(100 / nrow(dis), nrow(dis)) # vector of probabilities inclusion
-#' s <- pwd(dis = stand_dist, n = 100) # sample
+#' s <- pwd(dis = stand_dist$mat, n = 100) # sample
 #' sbi(dis = dis, pi = pi, s = s)
 #' }
 #' @importFrom stats var
@@ -174,7 +174,12 @@ sbi <- function(dis, pi, s) {
 #' @param con A vector of row (column) constraints.
 #' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 #' @param niter An integer with the maximum number of iterations (default = 1000).
-#' @return Returns a standardized distance matrix of size NxN.
+#' @return Returns a list with the following components:
+#' \itemize{
+#' \item \code{mat}, the standardized distance matrix of size NxN.
+#' \item \code{iterations}, number of iterations run by the algorithm.
+#' \item \code{conv}, convergence reached by the algorithm.
+#' }
 #' @references
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
@@ -215,7 +220,12 @@ stprod <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' @param  con A vector of row (column) constraints.
 #' @param differ A scalar with the maximum accepted difference with the constraint (default = 1e-15).
 #' @param niter An integer with the maximum number of iterations (default = 1000).
-#' @return Returns a standardized distance matrix of size NxN.
+#' @return Returns a list with the following components:
+#' \itemize{
+#' \item \code{mat}, the standardized distance matrix of size NxN.
+#' \item \code{iterations}, number of iterations run by the algorithm.
+#' \item \code{conv}, convergence reached by the algorithm.
+#' }
 #' @references
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
@@ -266,7 +276,7 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-#' s <- swd(dis = stand_dist, n = 15)  # drawn sample
+#' s <- swd(dis = stand_dist$mat, n = 15)  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -274,7 +284,7 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-#' s <- swd(dis = stand_dist, n = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- swd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
 #' }
 #' @export
 swd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
