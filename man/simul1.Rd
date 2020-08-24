@@ -4,7 +4,8 @@
 \name{simul1}
 \alias{simul1}
 \title{Simulated Population 1.}
-\format{A data frame with  1000 rows and 11 variables:
+\format{
+A data frame with  1000 rows and 11 variables:
 \describe{
   \item{x}{coordinate x}
   \item{y}{coordinate y}
@@ -17,7 +18,8 @@
   \item{z17}{seventh value of the unit}
   \item{z18}{eighth value of the unit}
   \item{z19}{ninth value of the unit}
-         }}
+         }
+}
 \source{
 Benedetti R, Piersimoni F (2017). A spatially balanced design with
 probability function proportional to the within sample distance.

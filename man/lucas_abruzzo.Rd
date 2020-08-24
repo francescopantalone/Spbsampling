@@ -4,7 +4,8 @@
 \name{lucas_abruzzo}
 \alias{lucas_abruzzo}
 \title{LUCAS data for the region "Abruzzo", Italy.}
-\format{A data frame with 2699 rows and 7 variables:
+\format{
+A data frame with 2699 rows and 7 variables:
 \describe{
   \item{id}{identified code for the unit spatial point}
   \item{prov}{province}
@@ -13,7 +14,8 @@
   \item{y}{coordinate y}
   \item{lc}{land cover code}
   \item{lu}{land use code}
-        }}
+        }
+}
 \source{
 The dataset is a rearrangement of the data from LUCAS 2012 for the region "Abruzzo", Italy.
 \url{https://ec.europa.eu/eurostat/web/lucas/data/primary-data/2012}

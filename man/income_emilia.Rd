@@ -4,7 +4,8 @@
 \name{income_emilia}
 \alias{income_emilia}
 \title{The income of municipalities of "Emilia Romagna".}
-\format{A data frame with 334 rows and 7 variables:
+\format{
+A data frame with 334 rows and 7 variables:
 \describe{
   \item{municipality_code}{identification municipality code}
   \item{municipality}{name of the municipality}
@@ -13,7 +14,8 @@
   \item{tot_inc}{average income of the municipality}
   \item{x_coord}{coordinate x of the municipality}
   \item{y_coord}{coordinate y of the municipality}
-         }}
+         }
+}
 \source{
 The dataset is a rearrangement from the data released by
 the Italian Finance Department, MEF - Dipartimento delle Finanze (Italy).

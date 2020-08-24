@@ -3,7 +3,6 @@
 \docType{package}
 \name{Spbsampling}
 \alias{Spbsampling}
-\alias{Spbsampling-package}
 \title{Spatially balanced sampling designs}
 \description{
 Selection of spatially balanced samples. In particular, the implemented
