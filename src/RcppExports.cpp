@@ -21,7 +21,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // pwd
-arma::mat pwd(arma::mat dis, int n, double beta, int nrepl, int niter);
+Rcpp::List pwd(arma::mat dis, int n, double beta, int nrepl, int niter);
 RcppExport SEXP _Spbsampling_pwd(SEXP disSEXP, SEXP nSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -77,7 +77,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // swd
-arma::mat swd(arma::mat dis, int n, double beta, int nrepl, int niter);
+Rcpp::List swd(arma::mat dis, int n, double beta, int nrepl, int niter);
 RcppExport SEXP _Spbsampling_swd(SEXP disSEXP, SEXP nSEXP, SEXP betaSEXP, SEXP nreplSEXP, SEXP niterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

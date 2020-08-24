@@ -15,11 +15,15 @@
 //' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 //' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 //' @param nrepl Number of samples to draw (default = 1).
-//' @param niter Number of iterations for the algorithm. More iterations are
+//' @param niter Maximum number of iterations for the algorithm. More iterations are
 //' better but require more time. Usually 10 is very efficient (default = 10).
-//' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
+//' @return Returns a list with the following components:
+//' \itemize{
+//' \item \code{s}, a matrix \code{nrepl} x \code{n}, which contains the
 //' \code{nrepl} selected samples, each of them stored in a row. In particular,
 //' the i-th row contains all labels of units selected in the i-th sample.
+//' \item \code{iterations}, number of iterations run by the algorithm.
+//' }
 //' @references
 //' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 //' probability function proportional to the within sample distance.
@@ -29,7 +33,7 @@
 //' # Example 1
 //' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-//' s <- pwd(dis = dis, n = 15)  # drawn sample
+//' s <- pwd(dis = dis, n = 15)$s  # drawn sample
 //' \donttest{
 //' # Example 2
 //' # Draw 1 sample of dimension 15 with constant inclusion probabilities
@@ -37,7 +41,7 @@
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- pwd(dis = stand_dist$mat, n = 15)  # drawn sample
+//' s <- pwd(dis = stand_dist$mat, n = 15)$s  # drawn sample
 //'
 //' # Example 3
 //' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -45,12 +49,12 @@
 //' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 //' con <- rep(0, nrow(dis)) # vector of constraints
 //' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-//' s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
+//' s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)$s  # drawn samples
 //' }
 //' @export
 // [[Rcpp::export]]
 
-arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter = 10)
+Rcpp::List pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter = 10)
 {
   int npo = dis.n_rows;
   if(dis.is_square() == FALSE)
@@ -85,6 +89,7 @@ arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter 
   arma::vec rand(npo);
   arma::uvec urand(npo);
   arma::vec q(nrepl);
+  arma::vec iter_vec(nrepl);
   double ch,totc,totb;
   ch = 0.0;
   totc = 0.0;
@@ -134,6 +139,7 @@ arma::mat pwd (arma::mat dis, int n, double beta = 10, int nrepl = 1, int niter 
       iter++;
     }
     selez.row(cc - 1) = codord.subvec(0, n - 1).t();
+    iter_vec(cc - 1) = iter;
   }
-  return selez;
+  return Rcpp::List::create(Rcpp::Named("s") = selez, Rcpp::Named("iterations") = iter_vec);
 }

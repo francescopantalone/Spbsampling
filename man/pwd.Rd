@@ -17,13 +17,17 @@ of units in the population are.}
 
 \item{nrepl}{Number of samples to draw (default = 1).}
 
-\item{niter}{Number of iterations for the algorithm. More iterations are
+\item{niter}{Maximum number of iterations for the algorithm. More iterations are
 better but require more time. Usually 10 is very efficient (default = 10).}
 }
 \value{
-Returns a matrix \code{nrepl} x \code{n}, which contains the
+Returns a list with the following components:
+\itemize{
+\item \code{s}, a matrix \code{nrepl} x \code{n}, which contains the
 \code{nrepl} selected samples, each of them stored in a row. In particular,
 the i-th row contains all labels of units selected in the i-th sample.
+\item \code{iterations}, number of iterations run by the algorithm.
+}
 }
 \description{
 Selects spatially balanced samples through the use of the
@@ -36,7 +40,7 @@ function \code{\link{stprod}}.
 # Example 1
 # Draw 1 sample of dimension 15 without constant inclusion probabilities
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-s <- pwd(dis = dis, n = 15)  # drawn sample
+s <- pwd(dis = dis, n = 15)$s  # drawn sample
 \donttest{
 # Example 2
 # Draw 1 sample of dimension 15 with constant inclusion probabilities
@@ -44,7 +48,7 @@ s <- pwd(dis = dis, n = 15)  # drawn sample
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- pwd(dis = stand_dist$mat, n = 15)  # drawn sample
+s <- pwd(dis = stand_dist$mat, n = 15)$s  # drawn sample
 
 # Example 3
 # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -52,7 +56,7 @@ s <- pwd(dis = stand_dist$mat, n = 15)  # drawn sample
 dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 con <- rep(0, nrow(dis)) # vector of constraints
 stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
+s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)$s  # drawn samples
 }
 }
 \references{

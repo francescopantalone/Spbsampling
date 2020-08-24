@@ -74,11 +74,15 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 #' \eqn{\beta} is, the more the sample is going to be spread (default = 10).
 #' @param nrepl Number of samples to draw (default = 1).
-#' @param niter Number of iterations for the algorithm. More iterations are
+#' @param niter Maximum number of iterations for the algorithm. More iterations are
 #' better but require more time. Usually 10 is very efficient (default = 10).
-#' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
+#' @return Returns a list with the following components:
+#' \itemize{
+#' \item \code{s}, a matrix \code{nrepl} x \code{n}, which contains the
 #' \code{nrepl} selected samples, each of them stored in a row. In particular,
 #' the i-th row contains all labels of units selected in the i-th sample.
+#' \item \code{iterations}, number of iterations run by the algorithm.
+#' }
 #' @references
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
@@ -88,7 +92,7 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' # Example 1
 #' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
-#' s <- pwd(dis = dis, n = 15)  # drawn sample
+#' s <- pwd(dis = dis, n = 15)$s  # drawn sample
 #' \donttest{
 #' # Example 2
 #' # Draw 1 sample of dimension 15 with constant inclusion probabilities
@@ -96,7 +100,7 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist$mat, n = 15)  # drawn sample
+#' s <- pwd(dis = stand_dist$mat, n = 15)$s  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -104,7 +108,7 @@ hpwd <- function(dis, n, beta = 10, nrepl = 1L) {
 #' dis <- as.matrix(dist(cbind(lucas_abruzzo$x, lucas_abruzzo$y))) # distance matrix
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
-#' s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- pwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)$s  # drawn samples
 #' }
 #' @export
 pwd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
@@ -146,7 +150,7 @@ pwd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
 #' con <- rep(0, nrow(dis)) # vector of constraints
 #' stand_dist <- stprod(mat = dis, con = con) # standardized matrix
 #' pi <- rep(100 / nrow(dis), nrow(dis)) # vector of probabilities inclusion
-#' s <- pwd(dis = stand_dist$mat, n = 100) # sample
+#' s <- pwd(dis = stand_dist$mat, n = 100)$s # sample
 #' sbi(dis = dis, pi = pi, s = s)
 #' }
 #' @importFrom stats var
@@ -254,11 +258,15 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' @param beta Parameter \eqn{\beta} for the algorithm. The higher
 #' \eqn{\beta} is, the more the sample is going to be spread.
 #' @param nrepl Number of samples to draw (default = 1).
-#' @param niter Number of iterations for the algorithm. More iterations are
+#' @param niter Maximum number of iterations for the algorithm. More iterations are
 #' better but require more time. Usually 10 is very efficient (default = 10).
-#' @return Returns a matrix \code{nrepl} x \code{n}, which contains the
+#' @return Returns a list with the following components:
+#' \itemize{
+#' \item \code{s}, a matrix \code{nrepl} x \code{n}, which contains the
 #' \code{nrepl} selected samples, each of them stored in a row. In particular,
 #' the i-th row contains all labels of units selected in the i-th sample.
+#' \item \code{iterations}, number of iterations run by the algorithm.
+#' }
 #' @references
 #' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 #' probability function proportional to the within sample distance.
@@ -268,7 +276,7 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' # Example 1
 #' # Draw 1 sample of dimension 15 without constant inclusion probabilities
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord, income_emilia$y_coord))) # distance matrix
-#' s <- swd(dis = dis, n = 15)  # drawn sample
+#' s <- swd(dis = dis, n = 15)$s  # drawn sample
 #' \donttest{
 #' # Example 2
 #' # Draw 1 sample of dimension 15 with constant inclusion probabilities
@@ -276,7 +284,7 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-#' s <- swd(dis = stand_dist$mat, n = 15)  # drawn sample
+#' s <- swd(dis = stand_dist$mat, n = 15)$s  # drawn sample
 #'
 #' # Example 3
 #' # Draw 2 samples of dimension 15 with constant inclusion probabilities
@@ -284,7 +292,7 @@ stsum <- function(mat, con, differ = 1e-15, niter = 1000L) {
 #' dis <- as.matrix(dist(cbind(income_emilia$x_coord,income_emilia$y_coord))) # distance matrix
 #' con <- rep(1, nrow(dis)) # vector of constraints
 #' stand_dist <- stsum(mat = dis, con = con) # standardized matrix
-#' s <- swd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)  # drawn samples
+#' s <- swd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2)$s  # drawn samples
 #' }
 #' @export
 swd <- function(dis, n, beta = 10, nrepl = 1L, niter = 10L) {
