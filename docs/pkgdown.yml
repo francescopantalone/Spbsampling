@@ -1,7 +1,8 @@
-pandoc: '2.5'
-pkgdown: 1.4.1
+pandoc: 2.7.3
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles: {}
+last_built: 2020-08-24T16:36Z
 urls:
   reference: https://francescopantalone.github.io/Spbsampling//reference
   article: https://francescopantalone.github.io/Spbsampling//articles

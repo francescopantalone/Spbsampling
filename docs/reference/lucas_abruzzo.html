@@ -15,23 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,8 +45,8 @@
 
 
 
-<meta property="og:title" content="LUCAS data for the region "Abruzzo", Italy. — lucas_abruzzo" />
 
+<meta property="og:title" content="LUCAS data for the region "Abruzzo", Italy. — lucas_abruzzo" />
 <meta property="og:description" content="The land use/cover area frame statistical survey, abbreviated as LUCAS, is a
 European field survey program funded and executed by Eurostat. Its objective
 is to set up area frame surveys for the provision of coherent and harmonised
@@ -68,9 +74,8 @@ Every main category has subclasses, which are indicated by the combination
 of the letter of the category and digits. Altogether there are 84 classes.
 Land use has 14 main categories. It has altogether 33 classes, which are
 indicated by the combination of the letter U and three digits." />
-
 <meta property="og:image" content="https://francescopantalone.github.io/Spbsampling/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -87,7 +92,7 @@ indicated by the combination of the letter U and three digits." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -101,7 +106,7 @@ indicated by the combination of the letter U and three digits." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Spbsampling</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
       </span>
     </div>
 
@@ -123,7 +128,6 @@ indicated by the combination of the letter U and three digits." />
   <a href="../tutorials/00-illustration.html">Illustration</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -145,7 +149,6 @@ indicated by the combination of the letter U and three digits." />
     </div>
 
     <div class="ref-description">
-    
     <p>The land use/cover area frame statistical survey, abbreviated as LUCAS, is a
 European field survey program funded and executed by Eurostat. Its objective
 is to set up area frame surveys for the provision of coherent and harmonised
@@ -159,7 +162,7 @@ In the classification there is a clear distinction between land cover and
 land use: land cover means physical cover ("material") observed at the
 earth's surface; land use means socio-economic function of the observed
 earth's surface. For each of both we assign a code to identified which type
-the point is. Land cover has 8 main categories, which are indicated by letter:</p><dl class='dl-horizontal'>
+the point is. Land cover has 8 main categories, which are indicated by letter:</p><dl'>
     <dt>A</dt><dd><p>artificial land</p></dd>
     <dt>B</dt><dd><p>cropland</p></dd>
     <dt>C</dt><dd><p>woodland</p></dd>
@@ -173,14 +176,14 @@ the point is. Land cover has 8 main categories, which are indicated by letter:</
 of the letter of the category and digits. Altogether there are 84 classes.
 Land use has 14 main categories. It has altogether 33 classes, which are
 indicated by the combination of the letter U and three digits.</p>
-    
     </div>
 
     <pre class="usage"><span class='no'>lucas_abruzzo</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 2699 rows and 7 variables:</p><dl class='dl-horizontal'>
+    <p>A data frame with 2699 rows and 7 variables:</p><dl'>
   <dt>id</dt><dd><p>identified code for the unit spatial point</p></dd>
   <dt>prov</dt><dd><p>province</p></dd>
   <dt>elev</dt><dd><p>elevation of the unit spatial point, meant as the height above or below sea level</p></dd>
@@ -190,23 +193,17 @@ indicated by the combination of the letter U and three digits.</p>
   <dt>lu</dt><dd><p>land use code</p></dd>
         
 </dl>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>The dataset is a rearrangement of the data from LUCAS 2012 for the region "Abruzzo", Italy.
 <a href='https://ec.europa.eu/eurostat/web/lucas/data/primary-data/2012'>https://ec.europa.eu/eurostat/web/lucas/data/primary-data/2012</a></p>
-    
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-          </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -217,7 +214,7 @@ indicated by the combination of the letter U and three digits.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
