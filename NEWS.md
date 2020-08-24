@@ -1,3 +1,11 @@
+# Spbsampling 1.3.4
+
+* Functions `pwd()` and `swd()` now return a list with the following components:
+`s`, the samples stored in a matrix `nrepl * n`, and `iterations`, the number of iterations run by the algorithm.
+* Functions `stprod()` and `stsum()` now return a list with the following components:
+`mat`, the standardized matrix, `iterations`, the number of iterations run by the algorithm, 
+and `conv`, the convergence reached by the algorithm.
+
 # Spbsampling 1.3.3
 
 * Fixed typos in some examples.
