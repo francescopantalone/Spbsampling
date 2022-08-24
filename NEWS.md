@@ -1,3 +1,7 @@
+# Spbsampling 1.3.5
+
+* Added JSS reference.
+
 # Spbsampling 1.3.4
 
 * Functions `pwd()` and `swd()` now return a list with the following components:
