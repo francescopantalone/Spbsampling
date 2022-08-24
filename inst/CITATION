@@ -1,0 +1,19 @@
+bibentry(bibtype = "Article",
+  title        = "{Spbsampling}: An {R} Package for Spatially Balanced Sampling",
+  author       = c(person(given = "Francesco",
+                          family = "Pantalone",
+                          email = "francesco.pantalone@studenti.unipg.it"),
+                   person(given = "Roberto",
+                          family = "Benedetti",
+                          email = "benedett@unich.it"),
+                   person(given = "Federica",
+                          family = "Pierismoni")),
+  journal      = "Journal of Statistical Software, Code Snippets",
+  year         = "2022",
+  volume       = "103",
+  number       = "2",
+  pages        = "1--22",
+  doi          = "10.18637/jss.v103.c02",
+  header       = "To cite Spbsampling in publications use:"
+)
+
