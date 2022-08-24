@@ -30,7 +30,7 @@
 //' Benedetti R, Piersimoni F (2017). A spatially balanced design with
 //' probability function proportional to the within sample distance.
 //' \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
-//' \url{https://doi.org/10.1002/bimj.201600194}
+//' \doi{10.1002/bimj.201600194}
 //' @examples
 //' \dontshow{
 //' d <- matrix(runif(200), 100, 2)

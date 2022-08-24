@@ -64,7 +64,7 @@ s <- hpwd(dis = stand_dist$mat, n = 15, beta = 20, nrepl = 2) # drawn samples
 Benedetti R, Piersimoni F (2017). A spatially balanced design with
 probability function proportional to the within sample distance.
 \emph{Biometrical Journal}, \strong{59}(5), 1067-1084.
-\url{https://doi.org/10.1002/bimj.201600194}
+\doi{10.1002/bimj.201600194}
 
 Benedetti R, Piersimoni F (2017). Fast Selection of Spatially Balanced Samples. \emph{arXiv}.
 \url{https://arxiv.org/abs/1710.09116}
