@@ -1,11 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Spbsampling <img src="man/figures/logo.png" align="right" />
-
-[![CRAN
-version](http://www.r-pkg.org/badges/version/Spbsampling)](https://cran.r-project.org/package=Spbsampling)
-[![downloads](https://cranlogs.r-pkg.org/badges/Spbsampling)](https://cran.r-project.org/package=Spbsampling)
+# Spbsampling
 
 An [R](https://www.r-project.org) package for *spatially balanced
 sampling*.
@@ -35,20 +31,11 @@ You can install the released version of Spbsampling from
 install.packages("Spbsampling")
 ```
 
-or the development version from GitHub, using the **devtools** package
-
-``` r
-devtools::install_github("francescopantalone/Spbsampling")
-```
-
-or using the **remotes** package, which is a lighter package than
-**devtools**
-
-``` r
-remotes::install_github("francescopantalone/Spbsampling")
-```
-
 ## References
+
+Pantalone F, Benedetti R, Piersimoni F (2022). An R Package for
+Spatially Balanced Sampling. *Journal of Statistical Software, Code
+Snippets*, 103(2), 1-22. <https://doi.org/10.18637/jss.v103.c02>
 
 Benedetti R, Piersimoni F (2017). A spatially balanced design with
 probability function proportional to the within sample distance.
