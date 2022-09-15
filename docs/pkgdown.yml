@@ -2,7 +2,7 @@ pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-09-15T19:59Z
+last_built: 2022-09-15T20:30Z
 urls:
   reference: https://francescopantalone.github.io/Spbsampling/reference
   article: https://francescopantalone.github.io/Spbsampling/articles
